@@ -30,7 +30,7 @@
     /* ── LOADER ── */
     #loader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s,visibility .6s}
     #loader.out{opacity:0;visibility:hidden}
-    .ld-logo{display:flex;align-items:center;background:var(--o);border-radius:100px;padding:6px 20px 6px 6px;gap:10px}
+    .ld-logo{display:flex;align-items:center}
     .ld-circle{width:46px;height:46px;border-radius:50%;background:#1c1c1c;border:3px solid var(--o);display:flex;align-items:center;justify-content:center}
     .ld-circle svg{width:24px;height:24px}
     .ld-t1{font-size:1.1rem;font-weight:900;color:#1a1a1a;letter-spacing:1.5px;font-family:'Arial Black',Arial,sans-serif}
@@ -282,10 +282,7 @@
 <!-- LOADER -->
 <div id="loader">
   <div class="ld-logo">
-    <div class="ld-circle">
-      <svg viewBox="0 0 26 26" fill="none"><path d="M13 2 A11 11 0 1 1 2.5 8.5" stroke="white" stroke-width="2.8" stroke-linecap="round"/><line x1="13" y1="2" x2="13" y2="9" stroke="white" stroke-width="2.8" stroke-linecap="round"/></svg>
-    </div>
-    <div class="ld-texts"><span class="ld-t1">.STITEC</span><span class="ld-t2">INFORMÁTICA</span></div>
+    <img src="logo1_.png" alt="Stitec Informática" style="height:56px;border-radius:28px;">
   </div>
   <div class="ld-bar"><div class="ld-bar-inner"></div></div>
 </div>
@@ -293,9 +290,8 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-in">
-    <a href="#" class="logo">
-      <div class="logo-c"><svg viewBox="0 0 26 26" fill="none"><path d="M13 2 A11 11 0 1 1 2.5 8.5" stroke="white" stroke-width="2.8" stroke-linecap="round"/><line x1="13" y1="2" x2="13" y2="9" stroke="white" stroke-width="2.8" stroke-linecap="round"/></svg></div>
-      <div class="logo-tt"><span class="logo-t1">.STITEC</span><span class="logo-t2">INFORMÁTICA</span></div>
+    <a href="#" class="logo" style="background:none;padding:0;border-radius:0">
+      <img src="logo1_.png" alt="Stitec Informática" style="height:46px;border-radius:23px;">
     </a>
     <ul class="nav-links">
       <li><a href="#servicos">Serviços</a></li>
@@ -489,9 +485,8 @@
   <div class="ft-in">
     <div class="ft-top">
       <div class="ft-brand">
-        <div class="logo" style="pointer-events:none">
-          <div class="logo-c"><svg viewBox="0 0 26 26" fill="none"><path d="M13 2 A11 11 0 1 1 2.5 8.5" stroke="white" stroke-width="2.8" stroke-linecap="round"/><line x1="13" y1="2" x2="13" y2="9" stroke="white" stroke-width="2.8" stroke-linecap="round"/></svg></div>
-          <div class="logo-tt"><span class="logo-t1">.STITEC</span><span class="logo-t2">INFORMÁTICA</span></div>
+        <div class="logo" style="pointer-events:none;background:none;padding:0;border-radius:0">
+          <img src="logo1_.png" alt="Stitec Informática" style="height:46px;border-radius:23px;">
         </div>
         <p>Empresa jovem com técnicos altamente qualificados. Especializados em informática, reparações e tecnologia em Penafiel.</p>
       </div>
