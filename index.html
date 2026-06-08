@@ -323,9 +323,9 @@
         <a href="tel:+351255099502" class="btn-ghost">☎ +351 255 099 502</a>
       </div>
       <div class="hero-stats">
-        <div class="hst"><div class="n">+10</div><div class="l">Anos exp.</div></div>
+        <div class="hst"><div class="n" data-count="10" data-suffix="+">0+</div><div class="l">Anos exp.</div></div>
         <div class="hst-sep"></div>
-        <div class="hst"><div class="n">100%</div><div class="l">Satisfação</div></div>
+        <div class="hst"><div class="n" data-count="100" data-suffix="%">0%</div><div class="l">Satisfação</div></div>
         <div class="hst-sep"></div>
         <div class="hst"><div class="n">24h</div><div class="l">Orçamento</div></div>
       </div>
@@ -548,6 +548,117 @@
       badge.style.color='#f87171';
     }
   })();
+
+  // ── CURSOR SPOTLIGHT ──
+  const spotlight = document.createElement('div');
+  spotlight.style.cssText='position:fixed;pointer-events:none;z-index:1;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(240,119,34,.07) 0%,transparent 65%);transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease;left:-999px;top:-999px';
+  document.body.appendChild(spotlight);
+  document.addEventListener('mousemove',e=>{spotlight.style.left=e.clientX+'px';spotlight.style.top=e.clientY+'px'});
+
+  // ── FLOATING PARTICLES CANVAS ──
+  const canvas=document.createElement('canvas');
+  canvas.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5';
+  document.body.prepend(canvas);
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+  class Particle{
+    constructor(){this.reset()}
+    reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.a=Math.random()*.5+.1}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(240,119,34,${this.a})`;ctx.fill()}
+    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
+  }
+  for(let i=0;i<90;i++)particles.push(new Particle());
+  // connect nearby particles
+  function animParticles(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{p.update();p.draw()});
+    for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(240,119,34,${.12*(1-dist/100)})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+    requestAnimationFrame(animParticles);
+  }
+  animParticles();
+
+  // ── TYPEWRITER HERO ──
+  const h1=document.querySelector('.hero-h1');
+  if(h1){
+    const lines=h1.innerHTML.split('<br>');
+    h1.innerHTML='';
+    let li=0,ci=0;
+    const tempDiv=document.createElement('div');
+    function nextChar(){
+      if(li>=lines.length)return;
+      tempDiv.innerHTML=lines[li];
+      const plain=tempDiv.textContent;
+      const isGrad=lines[li].includes('grd');
+      if(ci===0&&li>0)h1.innerHTML+=`<br>`;
+      if(ci<plain.length){
+        if(ci===0){
+          const sp=document.createElement('span');
+          if(isGrad)sp.innerHTML=`<span class="grd"></span>`;
+          h1.appendChild(sp);
+        }
+        const last=h1.lastElementChild;
+        const target=isGrad?last.querySelector('.grd'):last;
+        if(target)target.textContent+=plain[ci];
+        ci++;setTimeout(nextChar,38);
+      } else {li++;ci=0;setTimeout(nextChar,120)}
+    }
+    setTimeout(nextChar,1400);
+  }
+
+  // ── CARD SHIMMER ON HOVER ──
+  document.querySelectorAll('.svc,.glass-panel,.pr-step').forEach(card=>{
+    card.style.overflow='hidden';
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width)*100;
+      const y=((e.clientY-r.top)/r.height)*100;
+      card.style.setProperty('--mx',x+'%');
+      card.style.setProperty('--my',y+'%');
+    });
+    card.style.backgroundImage='radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(240,119,34,.06),transparent 60%)';
+  });
+
+  // ── COUNTER ANIMATION ──
+  function animCount(el,target,duration=1600){
+    let start=null;
+    function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/duration,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*target)+(el.dataset.suffix||'');
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const countObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target;
+        const val=parseInt(el.dataset.count);
+        if(!isNaN(val))animCount(el,val);
+        countObs.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+
+  // ── TILT ON HERO GLASS PANEL ──
+  const gp=document.querySelector('.glass-panel');
+  if(gp){
+    gp.addEventListener('mousemove',e=>{
+      const r=gp.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      gp.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg) scale(1.02)`;
+    });
+    gp.addEventListener('mouseleave',()=>{gp.style.transform='perspective(800px) rotateY(0) rotateX(0) scale(1)';gp.style.transition='transform .5s ease'});
+    gp.addEventListener('mouseenter',()=>{gp.style.transition='transform .1s ease'});
+  }
 
   // Loader
   window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),1100));
