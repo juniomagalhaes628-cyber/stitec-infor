@@ -274,7 +274,79 @@
     #btt:hover{background:var(--o2)}
 
     @media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:48px}.hero-right{display:none}}
-    @media(max-width:640px){.nav-links{display:none}.burger{display:flex}section{padding:72px 20px}.cta-box{padding:40px 24px}.ct-left,.ct-right{padding:32px 24px}}
+    @media(max-width:640px){
+      .nav-links{display:none}.burger{display:flex}
+      section{padding:64px 18px}
+      .cta-box{padding:36px 20px}
+      .ct-left,.ct-right{padding:28px 20px}
+    }
+
+    /* ── MOBILE FULL ── */
+    @media(max-width:480px){
+      /* Nav */
+      .nav-in{padding:0 18px}
+      .logo img{height:38px!important;border-radius:19px!important}
+
+      /* Hero */
+      .hero-in{padding:100px 18px 60px;gap:32px}
+      .hero-h1{font-size:2.2rem;letter-spacing:-1.5px}
+      .hero-desc{font-size:.95rem}
+      .hero-btns{flex-direction:column;gap:10px}
+      .btn-o,.btn-ghost{width:100%;justify-content:center;padding:16px 24px;font-size:1rem}
+      .hero-stats{gap:20px;flex-wrap:wrap}
+      .hst .n{font-size:1.5rem}
+      .hero-eyebrow{font-size:.65rem;padding:5px 12px}
+
+      /* Services grid */
+      .sv-grid{grid-template-columns:1fr}
+      .svc{padding:24px 20px}
+      .sv-top{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:36px}
+
+      /* Process */
+      .pr-grid{grid-template-columns:1fr}
+      .pr-step{padding:24px 20px}
+
+      /* About */
+      .ab-grid{grid-template-columns:1fr}
+      .ab-stats{grid-template-columns:1fr 1fr}
+
+      /* Contact */
+      .ct-wrap{grid-template-columns:1fr}
+      .fg{grid-template-columns:1fr}
+      .fg-full{grid-column:auto}
+      .ff input,.ff select,.ff textarea{padding:14px 16px;font-size:1rem}
+      .sbtn{width:100%;justify-content:center;padding:16px;font-size:1rem}
+      .form-footer{flex-direction:column;align-items:stretch}
+
+      /* CTA */
+      .cta-btns{flex-direction:column;gap:10px}
+      .cta-btns a{width:100%;text-align:center;justify-content:center}
+      .cta-box h2{font-size:1.6rem}
+
+      /* Footer */
+      .ft-top{grid-template-columns:1fr}
+      .ft-bottom{flex-direction:column;gap:10px;text-align:center}
+
+      /* Marquee */
+      .brand{font-size:.8rem}
+
+      /* Scroll to top btn */
+      #btt{bottom:20px;right:16px;width:40px;height:40px}
+
+      /* Glass panel cards — disable tilt on touch */
+      .glass-panel{transform:none!important}
+
+      /* Sections headings */
+      .s-title{font-size:1.6rem;letter-spacing:-1px}
+      .s-sub{font-size:.9rem}
+    }
+
+    /* Touch — bigger tap targets */
+    @media(hover:none){
+      .soc{width:48px;height:48px}
+      .nav-links a{padding:12px 16px}
+      .srv-row{padding:16px}
+    }
   </style>
 </head>
 <body>
@@ -549,38 +621,40 @@
     }
   })();
 
+  const isMobile = window.innerWidth <= 480 || ('ontouchstart' in window);
+
   // ── CURSOR SPOTLIGHT ──
   const spotlight = document.createElement('div');
   spotlight.style.cssText='position:fixed;pointer-events:none;z-index:1;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(240,119,34,.07) 0%,transparent 65%);transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease;left:-999px;top:-999px';
-  document.body.appendChild(spotlight);
-  document.addEventListener('mousemove',e=>{spotlight.style.left=e.clientX+'px';spotlight.style.top=e.clientY+'px'});
+  if(!isMobile){document.body.appendChild(spotlight);document.addEventListener('mousemove',e=>{spotlight.style.left=e.clientX+'px';spotlight.style.top=e.clientY+'px'});}
 
   // ── FLOATING PARTICLES CANVAS ──
-  const canvas=document.createElement('canvas');
-  canvas.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5';
-  document.body.prepend(canvas);
-  const ctx=canvas.getContext('2d');
-  let W,H,particles=[];
-  function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
-  resize();window.addEventListener('resize',resize);
-  class Particle{
-    constructor(){this.reset()}
-    reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.a=Math.random()*.5+.1}
-    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(240,119,34,${this.a})`;ctx.fill()}
-    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
-  }
-  for(let i=0;i<90;i++)particles.push(new Particle());
-  // connect nearby particles
-  function animParticles(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p=>{p.update();p.draw()});
-    for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(240,119,34,${.12*(1-dist/100)})`;ctx.lineWidth=.5;ctx.stroke()}
+  if(!isMobile){
+    const canvas=document.createElement('canvas');
+    canvas.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5';
+    document.body.prepend(canvas);
+    const ctx=canvas.getContext('2d');
+    let W,H,particles=[];
+    function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+    resize();window.addEventListener('resize',resize);
+    class Particle{
+      constructor(){this.reset()}
+      reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;this.a=Math.random()*.5+.1}
+      draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(240,119,34,${this.a})`;ctx.fill()}
+      update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
     }
-    requestAnimationFrame(animParticles);
+    for(let i=0;i<90;i++)particles.push(new Particle());
+    function animParticles(){
+      ctx.clearRect(0,0,W,H);
+      particles.forEach(p=>{p.update();p.draw()});
+      for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(240,119,34,${.12*(1-dist/100)})`;ctx.lineWidth=.5;ctx.stroke()}
+      }
+      requestAnimationFrame(animParticles);
+    }
+    animParticles();
   }
-  animParticles();
 
   // ── TYPEWRITER HERO ──
   const h1=document.querySelector('.hero-h1');
@@ -647,17 +721,19 @@
   },{threshold:.5});
   document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
 
-  // ── TILT ON HERO GLASS PANEL ──
-  const gp=document.querySelector('.glass-panel');
-  if(gp){
-    gp.addEventListener('mousemove',e=>{
-      const r=gp.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      gp.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg) scale(1.02)`;
-    });
-    gp.addEventListener('mouseleave',()=>{gp.style.transform='perspective(800px) rotateY(0) rotateX(0) scale(1)';gp.style.transition='transform .5s ease'});
-    gp.addEventListener('mouseenter',()=>{gp.style.transition='transform .1s ease'});
+  // ── TILT ON HERO GLASS PANEL (desktop only) ──
+  if(!isMobile){
+    const gp=document.querySelector('.glass-panel');
+    if(gp){
+      gp.addEventListener('mousemove',e=>{
+        const r=gp.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5;
+        const y=(e.clientY-r.top)/r.height-.5;
+        gp.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg) scale(1.02)`;
+      });
+      gp.addEventListener('mouseleave',()=>{gp.style.transform='perspective(800px) rotateY(0) rotateX(0) scale(1)';gp.style.transition='transform .5s ease'});
+      gp.addEventListener('mouseenter',()=>{gp.style.transition='transform .1s ease'});
+    }
   }
 
   // Loader
