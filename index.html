@@ -891,8 +891,8 @@
       right: 5%;
       top: 50%;
       transform: translateY(-50%);
-      width: 260px;
-      height: 480px;
+      width: 280px;
+      height: 520px;
       pointer-events: none;
     }
 
@@ -1605,79 +1605,146 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    /* ── Three.js 3D Phone ── */
+    /* ── Three.js 3D Phone (realistic) ── */
     (function() {
       if (typeof THREE === 'undefined') return;
       const canvas = document.getElementById('phone-canvas');
       if (!canvas || window.innerWidth <= 900) return;
 
-      const W = 260, H = 480;
+      const W = 280, H = 520;
       const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.setSize(W, H);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.3;
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 100);
-      camera.position.set(0, 0, 5.5);
+      const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
+      camera.position.set(0, 0, 5.8);
 
-      scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-      const pLight = new THREE.PointLight(0x39D96A, 2.5, 20);
-      pLight.position.set(2, 3, 4);
-      scene.add(pLight);
-      const pLight2 = new THREE.PointLight(0x2bc057, 1.2, 15);
-      pLight2.position.set(-2, -2, 3);
-      scene.add(pLight2);
+      // Lighting: key + rim (green) + fill pulse
+      scene.add(new THREE.AmbientLight(0x0d1f10, 1.4));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+      keyLight.position.set(3, 4, 5);
+      scene.add(keyLight);
+      const rimLight = new THREE.DirectionalLight(0x39D96A, 1.6);
+      rimLight.position.set(-3, -1, 2);
+      scene.add(rimLight);
+      const fillLight = new THREE.PointLight(0x39D96A, 3, 15);
+      fillLight.position.set(0, 2, 4);
+      scene.add(fillLight);
 
-      const bodyGeo = new THREE.BoxGeometry(1.1, 2.15, 0.13);
-      const bodyMat = new THREE.MeshPhongMaterial({ color: 0x0a1a0e, shininess: 80, specular: 0x39D96A });
-      const phone = new THREE.Mesh(bodyGeo, bodyMat);
-      scene.add(phone);
+      // ── Phone group (all parts rotate together) ──
+      const phoneGroup = new THREE.Group();
+      scene.add(phoneGroup);
 
-      const screenGeo = new THREE.PlaneGeometry(0.88, 1.72);
-      const screenMat = new THREE.MeshBasicMaterial({ color: 0x0d2010 });
-      const screenMesh = new THREE.Mesh(screenGeo, screenMat);
-      screenMesh.position.z = 0.067;
-      phone.add(screenMesh);
+      // Body — PBR: dark matte metal
+      const bodyGeo = new THREE.BoxGeometry(1.15, 2.3, 0.14);
+      const body = new THREE.Mesh(bodyGeo,
+        new THREE.MeshStandardMaterial({ color: 0x080f0a, metalness: 0.72, roughness: 0.22 })
+      );
+      phoneGroup.add(body);
 
-      const glowGeo = new THREE.PlaneGeometry(0.88, 1.72);
-      const glowMat = new THREE.MeshBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0.06 });
-      const glowMesh = new THREE.Mesh(glowGeo, glowMat);
-      glowMesh.position.z = 0.068;
-      phone.add(glowMesh);
+      // Frame edges — green metallic outline
+      phoneGroup.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.18, 2.33, 0.13)),
+        new THREE.LineBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0.68 })
+      ));
 
-      const edgesGeo = new THREE.EdgesGeometry(bodyGeo);
-      const edgesMat = new THREE.LineBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0.55 });
-      phone.add(new THREE.LineSegments(edgesGeo, edgesMat));
+      // Screen — canvas texture with UI content
+      const tc = document.createElement('canvas');
+      tc.width = 256; tc.height = 496;
+      const ctx2 = tc.getContext('2d');
+      const bg = ctx2.createLinearGradient(0, 0, 0, 496);
+      bg.addColorStop(0, '#060d07'); bg.addColorStop(1, '#020504');
+      ctx2.fillStyle = bg; ctx2.fillRect(0, 0, 256, 496);
+      ctx2.fillStyle = '#39D96A'; ctx2.font = 'bold 13px monospace';
+      ctx2.textAlign = 'left'; ctx2.fillText('22:47', 16, 26);
+      ctx2.fillStyle = '#3a6045'; ctx2.textAlign = 'right';
+      ctx2.fillText('▓▓▓ 85%', 240, 26);
+      ctx2.strokeStyle = 'rgba(57,217,106,0.15)'; ctx2.lineWidth = 1;
+      ctx2.beginPath(); ctx2.moveTo(0, 36); ctx2.lineTo(256, 36); ctx2.stroke();
+      ctx2.textAlign = 'center';
+      ctx2.fillStyle = '#F0F4F1'; ctx2.font = 'bold 32px sans-serif';
+      ctx2.fillText('Tech', 128, 200);
+      ctx2.fillStyle = '#39D96A'; ctx2.fillText('logic', 128, 238);
+      ctx2.fillStyle = '#F5C842'; ctx2.font = '20px sans-serif';
+      ctx2.fillText('★ ★ ★ ★ ★', 128, 280);
+      ctx2.fillStyle = '#39D96A'; ctx2.font = 'bold 56px sans-serif';
+      ctx2.fillText('5.0', 128, 352);
+      ctx2.fillStyle = '#5A7060'; ctx2.font = '12px monospace';
+      ctx2.fillText('Google Reviews · 14', 128, 380);
+      ctx2.fillStyle = 'rgba(57,217,106,0.22)';
+      ctx2.fillRect(88, 460, 80, 5);
 
-      const crackPoints = [
-        new THREE.Vector3(-0.05, 0.6, 0.069),
-        new THREE.Vector3(0.12, 0.35, 0.069),
-        new THREE.Vector3(0.04, 0.1, 0.069),
-        new THREE.Vector3(0.18, -0.15, 0.069),
-        new THREE.Vector3(0.08, -0.42, 0.069),
+      const screenMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.95, 1.86),
+        new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(tc) })
+      );
+      screenMesh.position.z = 0.072;
+      body.add(screenMesh);
+
+      // Notch (camera pill)
+      const notch = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.22, 0.045),
+        new THREE.MeshBasicMaterial({ color: 0x000000 })
+      );
+      notch.position.set(0, 0.92, 0.073);
+      body.add(notch);
+
+      // Glass reflection sheen
+      const reflMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.04, blending: THREE.AdditiveBlending });
+      const reflMesh2 = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 1.86), reflMat);
+      reflMesh2.position.z = 0.075;
+      body.add(reflMesh2);
+
+      // Side buttons — volume (left) + power (right)
+      const btnMat = new THREE.MeshStandardMaterial({ color: 0x1d4a24, metalness: 0.9, roughness: 0.18 });
+      [[-0.26, 'v1'], [0.05, 'v2']].forEach(([y]) => {
+        const b = new THREE.Mesh(new THREE.BoxGeometry(0.033, 0.14, 0.046), btnMat);
+        b.position.set(-0.608, y, 0); body.add(b);
+      });
+      const pwr = new THREE.Mesh(new THREE.BoxGeometry(0.033, 0.21, 0.046), btnMat);
+      pwr.position.set(0.608, 0.16, 0); body.add(pwr);
+
+      // Cracks — main + two branches (children of body → rotate with phone)
+      const crackDefs = [
+        { pts: [[-0.05,0.61,0.077],[0.13,0.37,0.077],[0.05,0.13,0.077],[0.19,-0.12,0.077],[0.09,-0.44,0.077]], base: 0.7 },
+        { pts: [[0.05,0.37,0.077],[0.17,0.27,0.077],[0.1,0.09,0.077]], base: 0.42 },
+        { pts: [[-0.02,0.13,0.077],[-0.15,0.02,0.077],[-0.07,-0.16,0.077]], base: 0.28 },
       ];
-      const crackGeo = new THREE.BufferGeometry().setFromPoints(crackPoints);
-      const crackMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
-      const crack = new THREE.Line(crackGeo, crackMat);
-      scene.add(crack);
+      const crackMats = crackDefs.map(({ pts, base }) => {
+        const mat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: base });
+        body.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(pts.map(([x,y,z]) => new THREE.Vector3(x,y,z))),
+          mat
+        ));
+        return { mat, base };
+      });
 
-      const scanGeo = new THREE.PlaneGeometry(0.88, 0.05);
-      const scanMat = new THREE.MeshBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0.7, side: THREE.DoubleSide });
-      const scanLine = new THREE.Mesh(scanGeo, scanMat);
-      scanLine.position.z = 0.072;
-      scene.add(scanLine);
+      // Scan beam — 3 layers (core, inner glow, outer glow), children of body
+      const scanDefs = [[0.025, 0.92], [0.09, 0.34], [0.26, 0.11]];
+      const scanLayers = scanDefs.map(([h, targetOp]) => {
+        const mat = new THREE.MeshBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false });
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(0.95, h), mat);
+        mesh.position.z = 0.078;
+        body.add(mesh);
+        return { mesh, mat, targetOp };
+      });
 
-      const particleCount = 80;
-      const pPositions = new Float32Array(particleCount * 3);
-      for (let i = 0; i < particleCount; i++) {
-        pPositions[i * 3]     = (Math.random() - 0.5) * 3.5;
-        pPositions[i * 3 + 1] = (Math.random() - 0.5) * 5;
-        pPositions[i * 3 + 2] = (Math.random() - 0.5) * 2 - 0.5;
+      // Circuit particles (world space, drift upward)
+      const N = 100;
+      const pPos = new Float32Array(N * 3);
+      const pSpd = new Float32Array(N);
+      for (let i = 0; i < N; i++) {
+        pPos[i*3]   = (Math.random()-0.5)*4.5;
+        pPos[i*3+1] = (Math.random()-0.5)*6.2;
+        pPos[i*3+2] = (Math.random()-0.5)*2.8 - 0.8;
+        pSpd[i]     = 0.003 + Math.random() * 0.005;
       }
       const pGeo = new THREE.BufferGeometry();
-      pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-      const pMat = new THREE.PointsMaterial({ color: 0x39D96A, size: 0.035, transparent: true, opacity: 0.45 });
-      scene.add(new THREE.Points(pGeo, pMat));
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x39D96A, size: 0.04, transparent: true, opacity: 0.5 })));
 
       let scanY = 1.2, t = 0;
 
@@ -1685,22 +1752,33 @@
         requestAnimationFrame(animate);
         t += 0.016;
 
-        phone.rotation.y = Math.sin(t * 0.5) * 0.18 - 0.2;
-        phone.rotation.x = Math.sin(t * 0.35) * 0.06 + 0.05;
-        phone.position.y = Math.sin(t * 0.6) * 0.08;
+        phoneGroup.rotation.y = Math.sin(t * 0.45) * 0.2 - 0.18;
+        phoneGroup.rotation.x = Math.sin(t * 0.3) * 0.07 + 0.04;
+        phoneGroup.position.y = Math.sin(t * 0.55) * 0.1;
 
-        scanY -= 0.011;
-        if (scanY < -1.2) scanY = 1.2;
-        scanLine.position.y = scanY;
-        scanMat.opacity = (scanY > -1.1 && scanY < 1.1) ? 0.7 : 0;
+        // Scan sweep
+        scanY -= 0.013;
+        if (scanY < -1.25) scanY = 1.2;
+        const inBounds = scanY > -1.1 && scanY < 1.1;
+        scanLayers.forEach(s => { s.mesh.position.y = scanY; s.mat.opacity = inBounds ? s.targetOp : 0; });
 
+        // Crack heal as scan passes
         const heal = THREE.MathUtils.clamp((1.1 - scanY) / 2.2, 0, 1);
-        crackMat.opacity = 0.65 * (1 - heal);
+        crackMats.forEach(({ mat, base }) => { mat.opacity = base * (1 - heal); });
 
-        glowMat.opacity = 0.05 + Math.sin(t * 1.2) * 0.03;
+        // Subtle screen shimmer
+        reflMat.opacity = 0.04 + Math.sin(t * 1.5) * 0.02;
 
-        crack.rotation.copy(phone.rotation);
-        crack.position.copy(phone.position);
+        // Fill light pulse (green ambient throb)
+        fillLight.intensity = 2.8 + Math.sin(t * 1.8) * 0.65;
+
+        // Particles drift upward
+        const pos = pGeo.attributes.position;
+        for (let i = 0; i < N; i++) {
+          pos.array[i*3+1] += pSpd[i];
+          if (pos.array[i*3+1] > 3.2) pos.array[i*3+1] = -3.2;
+        }
+        pos.needsUpdate = true;
 
         renderer.render(scene, camera);
       })();
