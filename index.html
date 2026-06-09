@@ -1471,13 +1471,13 @@
     const cur = document.getElementById('cursor');
     if (cur && !reduced && window.matchMedia('(hover: hover)').matches) {
       Object.assign(cur.style, { position:'fixed', top:'0', left:'0', width:'14px', height:'14px', border:'1.5px solid #4DAAFF', borderRadius:'50%', pointerEvents:'none', zIndex:'9998', transition:'width .2s, height .2s, background .2s', willChange:'transform' });
-      let mx = 0, my = 0, cx = 0, cy = 0;
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      document.addEventListener('mousemove', e => {
+        cur.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+      });
       document.querySelectorAll('a, button, .svc-card, #tscroll').forEach(el => {
         el.addEventListener('mouseenter', () => { cur.style.width = '30px'; cur.style.height = '30px'; cur.style.background = 'rgba(77,170,255,.12)'; });
         el.addEventListener('mouseleave', () => { cur.style.width = '14px'; cur.style.height = '14px'; cur.style.background = ''; });
       });
-      (function tick() { cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12; cur.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`; requestAnimationFrame(tick); })();
     } else if (cur) { cur.style.display = 'none'; }
 
     /* ── Glitch headline ── */
