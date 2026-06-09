@@ -15,14 +15,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #080C0A;
-      --card:     #0F1E14;
-      --accent:   #39D96A;
-      --accentH:  #2bc057;
+      --bg:       #070C14;
+      --card:     #0D1826;
+      --accent:   #4DAAFF;
+      --accentH:  #3A96F0;
       --amber:    #F5C842;
-      --text:     #F0F4F1;
-      --muted:    #5A7060;
-      --border:   rgba(57,217,106,0.1);
+      --text:     #F0F4FF;
+      --muted:    #5A7090;
+      --border:   rgba(77,170,255,0.12);
       --r:        10px;
     }
 
@@ -101,7 +101,7 @@
       position: fixed;
       inset: 0 0 auto 0;
       z-index: 200;
-      background: rgba(8, 12, 10, 0.88);
+      background: rgba(7, 12, 20, 0.88);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -177,7 +177,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(135deg, rgba(8,12,10,0.97) 0%, rgba(8,12,10,0.82) 55%, rgba(8,12,10,0.6) 100%);
+        linear-gradient(135deg, rgba(7,12,20,0.97) 0%, rgba(7,12,20,0.82) 55%, rgba(7,12,20,0.6) 100%);
       pointer-events: none;
     }
 
@@ -218,7 +218,7 @@
       left: -15%;
       width: 70%;
       height: 100%;
-      background: radial-gradient(ellipse at center, rgba(57,217,106,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse at center, rgba(77,170,255,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -321,7 +321,7 @@
        SERVICES
     ──────────────────────────────────────── */
     #servicos {
-      background: rgba(15, 30, 20, 0.28);
+      background: rgba(10, 20, 40, 0.28);
     }
 
     .services-grid {
@@ -433,7 +433,7 @@
        TESTIMONIALS
     ──────────────────────────────────────── */
     #testemunhos {
-      background: rgba(15, 30, 20, 0.18);
+      background: rgba(10, 20, 40, 0.18);
     }
 
     .tgrid {
@@ -640,7 +640,7 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(57,217,106,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(77,170,255,0.1) 0%, transparent 70%),
         radial-gradient(ellipse 50% 60% at 85% 30%, rgba(240,180,41,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
@@ -655,8 +655,8 @@
       gap: 2rem;
       /* animated gradient border via pseudo-element */
       background: var(--card);
-      border: 1px solid rgba(57,217,106,0.2);
-      box-shadow: 0 0 60px rgba(57,217,106,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+      border: 1px solid rgba(77,170,255,0.2);
+      box-shadow: 0 0 60px rgba(77,170,255,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     /* shimmering top-edge gradient */
@@ -758,7 +758,7 @@
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
-      background: rgba(57,217,106,0.07);
+      background: rgba(77,170,255,0.07);
       text-decoration: none;
     }
 
@@ -774,7 +774,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 1px solid rgba(57,217,106,0.18);
+      border: 1px solid rgba(77,170,255,0.18);
       animation: spin 18s linear infinite;
     }
 
@@ -801,7 +801,7 @@
       align-items: center;
       justify-content: center;
       font-size: 3.5rem;
-      filter: drop-shadow(0 0 16px rgba(57,217,106,0.5));
+      filter: drop-shadow(0 0 16px rgba(77,170,255,0.5));
     }
 
     .loja-orbits {
@@ -864,7 +864,7 @@
     }
 
     .svc-card:hover {
-      box-shadow: 0 20px 60px rgba(57,217,106,0.14);
+      box-shadow: 0 20px 60px rgba(77,170,255,0.14);
     }
 
     /* floating keyframes */
@@ -934,7 +934,7 @@
       position: absolute;
       inset: -1px;
       border-radius: calc(var(--r) + 1px);
-      background: conic-gradient(from var(--ga), transparent 0%, var(--accent) 4%, rgba(57,217,106,.35) 7%, transparent 11%);
+      background: conic-gradient(from var(--ga), transparent 0%, var(--accent) 4%, rgba(77,170,255,.35) 7%, transparent 11%);
       padding: 1px;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
@@ -945,7 +945,7 @@
       pointer-events: none;
     }
     .svc-card:hover::after { opacity: 1; }
-    .svc-card:hover { box-shadow: 0 0 40px rgba(57,217,106,0.12) !important; }
+    .svc-card:hover { box-shadow: 0 0 40px rgba(77,170,255,0.12) !important; }
 
     /* Glitch keyframes */
     @keyframes glitchB {
@@ -959,8 +959,8 @@
 
     /* phonePulse green */
     @keyframes phonePulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(57,217,106,0); }
-      50%      { box-shadow: 0 0 0 8px rgba(57,217,106,.15); }
+      0%,100% { box-shadow: 0 0 0 0 rgba(77,170,255,0); }
+      50%      { box-shadow: 0 0 0 8px rgba(77,170,255,.15); }
     }
 
     /* blink cursor for typewriter */
@@ -971,51 +971,51 @@
     .s-label { color: var(--accent); font-family: 'IBM Plex Mono', monospace; }
 
     /* Hero watermark → faint green */
-    .hero-wm { color: rgba(57,217,106,.05) !important; }
+    .hero-wm { color: rgba(77,170,255,.05) !important; }
 
     /* Hero overlay stays dark */
-    .hero-overlay { background: linear-gradient(135deg, rgba(8,12,10,.97) 0%, rgba(8,12,10,.82) 55%, rgba(8,12,10,.6) 100%) !important; }
+    .hero-overlay { background: linear-gradient(135deg, rgba(7,12,20,.97) 0%, rgba(7,12,20,.82) 55%, rgba(7,12,20,.6) 100%) !important; }
 
     /* Hero badge terminal style */
     .hero-badge { border-color: rgba(245,200,66,.25) !important; background: rgba(245,200,66,.08) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: .78rem !important; color: var(--amber) !important; }
 
     /* Buttons */
-    .btn-primary { background: var(--accent) !important; color: var(--bg) !important; font-family: 'Bebas Neue', sans-serif !important; font-size: 1.2rem !important; letter-spacing: .07em !important; box-shadow: 0 4px 22px rgba(57,217,106,.38) !important; animation: phonePulse 2.5s ease-in-out infinite; }
-    .btn-primary:hover { background: var(--accentH) !important; transform: translateY(-2px); box-shadow: 0 6px 30px rgba(57,217,106,.55) !important; }
-    .btn-ghost { color: rgba(57,217,106,.65) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: .85rem !important; }
+    .btn-primary { background: var(--accent) !important; color: var(--bg) !important; font-family: 'Bebas Neue', sans-serif !important; font-size: 1.2rem !important; letter-spacing: .07em !important; box-shadow: 0 4px 22px rgba(77,170,255,.38) !important; animation: phonePulse 2.5s ease-in-out infinite; }
+    .btn-primary:hover { background: var(--accentH) !important; transform: translateY(-2px); box-shadow: 0 6px 30px rgba(77,170,255,.55) !important; }
+    .btn-ghost { color: rgba(77,170,255,.65) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: .85rem !important; }
     .btn-ghost:hover { color: var(--accent) !important; text-decoration: none; }
 
     /* Service card image green tint */
     .svc-img { filter: brightness(.75) saturate(.7) hue-rotate(60deg) !important; }
     .svc-card:hover .svc-img { filter: brightness(.88) saturate(.9) hue-rotate(60deg) !important; }
     .svc-card h3 { font-family: 'Space Grotesk', sans-serif !important; font-size: 1.05rem !important; }
-    .svc-detail::before { content: '// '; color: rgba(57,217,106,.4); }
+    .svc-detail::before { content: '// '; color: rgba(77,170,255,.4); }
 
     /* Stats */
-    .stat { background: var(--card); border: 1px solid rgba(57,217,106,.1); border-radius: var(--r); padding: 2rem 1rem; text-align: center; }
+    .stat { background: var(--card); border: 1px solid rgba(77,170,255,.1); border-radius: var(--r); padding: 2rem 1rem; text-align: center; }
     .stat-n { font-family: 'Bebas Neue', sans-serif !important; font-size: clamp(3rem,7vw,4.5rem) !important; line-height: 1 !important; color: var(--accent) !important; }
     .stat-n.amber { color: var(--amber) !important; }
     .stat-l { font-family: 'IBM Plex Mono', monospace !important; font-size: .72rem !important; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
 
     /* Phone mockup → green theme */
-    .phone-body { background: linear-gradient(150deg, #1a3020, #0d1a10) !important; border-color: rgba(57,217,106,.25) !important; }
-    .phone-screen { background: linear-gradient(175deg, #080C0A, #0d1a10) !important; }
-    .phone-screen::before { background: radial-gradient(ellipse 80% 50% at 50% 30%, rgba(57,217,106,.18) 0%, transparent 70%) !important; }
+    .phone-body { background: linear-gradient(150deg, #0d2040, #070C14) !important; border-color: rgba(77,170,255,.25) !important; }
+    .phone-screen { background: linear-gradient(175deg, #070C14, #0a1428) !important; }
+    .phone-screen::before { background: radial-gradient(ellipse 80% 50% at 50% 30%, rgba(77,170,255,.18) 0%, transparent 70%) !important; }
     .phone-rating { color: var(--accent) !important; font-family: 'Bebas Neue', sans-serif !important; }
     .phone-stars { color: var(--amber) !important; }
-    .phone-notif-dot { background: var(--accent) !important; box-shadow: 0 0 0 3px rgba(57,217,106,.2) !important; }
+    .phone-notif-dot { background: var(--accent) !important; box-shadow: 0 0 0 3px rgba(77,170,255,.2) !important; }
 
     /* Nav */
-    #nav { border-bottom-color: rgba(57,217,106,.1) !important; }
+    #nav { border-bottom-color: rgba(77,170,255,.1) !important; }
     .nav-logo { font-family: 'Bebas Neue', sans-serif !important; font-size: 1.5rem !important; letter-spacing: .08em; }
     .nav-links a { font-family: 'IBM Plex Mono', monospace !important; font-size: .73rem !important; text-transform: lowercase; letter-spacing: .05em; }
     .nav-cta { border: 1px solid var(--accent) !important; background: transparent !important; color: var(--accent) !important; font-size: .73rem !important; }
     .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
 
     /* Loja section → green theme */
-    .loja-card { border-color: rgba(57,217,106,.25) !important; box-shadow: 0 0 60px rgba(57,217,106,.08), inset 0 1px 0 rgba(255,255,255,.05) !important; }
+    .loja-card { border-color: rgba(77,170,255,.25) !important; box-shadow: 0 0 60px rgba(77,170,255,.08), inset 0 1px 0 rgba(255,255,255,.05) !important; }
     .loja-card::before { background: linear-gradient(90deg, transparent, var(--accent), var(--amber), var(--accent), transparent) !important; }
-    .loja-ring { border-color: rgba(57,217,106,.18) !important; }
+    .loja-ring { border-color: rgba(77,170,255,.18) !important; }
     .loja-badge { background: rgba(245,200,66,.1) !important; border-color: rgba(245,200,66,.2) !important; }
     .loja-title .hl { background: linear-gradient(135deg, var(--accent) 0%, #7ff5a8 100%) !important; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
@@ -1023,16 +1023,16 @@
     .map-wrap iframe { filter: grayscale(100%) invert(90%) hue-rotate(130deg) brightness(.7) contrast(1.2) !important; }
 
     /* CTA phone button */
-    .cta-big { background: var(--accent) !important; color: var(--bg) !important; box-shadow: 0 4px 22px rgba(57,217,106,.35) !important; animation: phonePulse 2.5s ease-in-out infinite; }
+    .cta-big { background: var(--accent) !important; color: var(--bg) !important; box-shadow: 0 4px 22px rgba(77,170,255,.35) !important; animation: phonePulse 2.5s ease-in-out infinite; }
     .cta-big:hover { background: var(--accentH) !important; }
 
     /* Testimonials horizontal scroll */
-    #tscroll { display: flex; gap: 1.1rem; overflow-x: auto; padding: .5rem 0 1.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(57,217,106,.3) transparent; cursor: grab; }
+    #tscroll { display: flex; gap: 1.1rem; overflow-x: auto; padding: .5rem 0 1.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(77,170,255,.3) transparent; cursor: grab; }
     #tscroll:active { cursor: grabbing; }
     #tscroll::-webkit-scrollbar { height: 3px; }
-    #tscroll::-webkit-scrollbar-thumb { background: rgba(57,217,106,.3); border-radius: 2px; }
-    .tcard { flex-shrink: 0; width: 310px; background: var(--card); border: 1px solid rgba(57,217,106,.1); border-radius: var(--r); padding: 1.4rem; scroll-snap-align: start; font-family: 'IBM Plex Mono', monospace; font-size: .78rem; line-height: 1.9; transform-style: flat !important; }
-    .tcard-log { margin-top: .5rem; color: rgba(240,244,241,.75); font-style: italic; padding-left: 1rem; border-left: 1px solid rgba(57,217,106,.2); }
+    #tscroll::-webkit-scrollbar-thumb { background: rgba(77,170,255,.3); border-radius: 2px; }
+    .tcard { flex-shrink: 0; width: 310px; background: var(--card); border: 1px solid rgba(77,170,255,.1); border-radius: var(--r); padding: 1.4rem; scroll-snap-align: start; font-family: 'IBM Plex Mono', monospace; font-size: .78rem; line-height: 1.9; transform-style: flat !important; }
+    .tcard-log { margin-top: .5rem; color: rgba(240,244,241,.75); font-style: italic; padding-left: 1rem; border-left: 1px solid rgba(77,170,255,.2); }
 
     /* Mobile CTA */
     @media (max-width: 640px) {
@@ -1253,7 +1253,7 @@
 
 
   <!-- ══════════════ TESTIMONIALS ══════════════ -->
-  <section id="testemunhos" aria-labelledby="test-title" style="background:rgba(15,30,20,.3);border-top:1px solid rgba(57,217,106,.08);">
+  <section id="testemunhos" aria-labelledby="test-title" style="background:rgba(10,20,40,.3);border-top:1px solid rgba(77,170,255,.08);">
     <div class="wrap">
       <div class="s-head">
         <span class="s-label">// módulo: reviews</span>
@@ -1450,8 +1450,8 @@
 
 
   <!-- Mobile CTA -->
-  <div id="mobile-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(8,12,10,.96);border-top:1px solid rgba(57,217,106,.2);padding:.75rem 1.25rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);">
-    <a href="tel:910277026" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#39D96A;color:#080C0A;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;padding:.75rem;border-radius:10px;text-decoration:none;">📞 &nbsp;LIGAR — 910 277 026</a>
+  <div id="mobile-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(7,12,20,.96);border-top:1px solid rgba(77,170,255,.2);padding:.75rem 1.25rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);">
+    <a href="tel:910277026" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#4DAAFF;color:#070C14;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;padding:.75rem;border-radius:10px;text-decoration:none;">📞 &nbsp;LIGAR — 910 277 026</a>
   </div>
 
   <!-- ══════════════ JS ══════════════ -->
@@ -1461,7 +1461,7 @@
     /* ── Scroll progress ── */
     const sb = document.getElementById('scroll-bar');
     if (sb) {
-      Object.assign(sb.style, { position:'fixed', top:'0', left:'0', height:'2px', width:'0%', background:'#39D96A', zIndex:'9999', boxShadow:'0 0 8px #39D96A' });
+      Object.assign(sb.style, { position:'fixed', top:'0', left:'0', height:'2px', width:'0%', background:'#4DAAFF', zIndex:'9999', boxShadow:'0 0 8px #4DAAFF' });
       window.addEventListener('scroll', () => {
         sb.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
       }, { passive: true });
@@ -1470,11 +1470,11 @@
     /* ── Custom cursor ── */
     const cur = document.getElementById('cursor');
     if (cur && !reduced && window.matchMedia('(hover: hover)').matches) {
-      Object.assign(cur.style, { position:'fixed', top:'0', left:'0', width:'14px', height:'14px', border:'1.5px solid #39D96A', borderRadius:'50%', pointerEvents:'none', zIndex:'9998', transition:'width .2s, height .2s, background .2s', willChange:'transform' });
+      Object.assign(cur.style, { position:'fixed', top:'0', left:'0', width:'14px', height:'14px', border:'1.5px solid #4DAAFF', borderRadius:'50%', pointerEvents:'none', zIndex:'9998', transition:'width .2s, height .2s, background .2s', willChange:'transform' });
       let mx = 0, my = 0, cx = 0, cy = 0;
       document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
       document.querySelectorAll('a, button, .svc-card, #tscroll').forEach(el => {
-        el.addEventListener('mouseenter', () => { cur.style.width = '30px'; cur.style.height = '30px'; cur.style.background = 'rgba(57,217,106,.12)'; });
+        el.addEventListener('mouseenter', () => { cur.style.width = '30px'; cur.style.height = '30px'; cur.style.background = 'rgba(77,170,255,.12)'; });
         el.addEventListener('mouseleave', () => { cur.style.width = '14px'; cur.style.height = '14px'; cur.style.background = ''; });
       });
       (function tick() { cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12; cur.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`; requestAnimationFrame(tick); })();
@@ -1569,7 +1569,7 @@
         log.textContent = '';
         const blink = document.createElement('span');
         blink.textContent = '█';
-        blink.style.cssText = 'color:#39D96A;animation:blink .8s step-end infinite;';
+        blink.style.cssText = 'color:#4DAAFF;animation:blink .8s step-end infinite;';
         log.appendChild(blink);
         let i = 0;
         const iv = setInterval(() => {
@@ -1623,14 +1623,14 @@
       camera.position.set(0, 0, 5.8);
 
       // Lighting: key + rim (green) + fill pulse
-      scene.add(new THREE.AmbientLight(0x0d1f10, 1.4));
+      scene.add(new THREE.AmbientLight(0x0A1428, 1.4));
       const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
       keyLight.position.set(3, 4, 5);
       scene.add(keyLight);
-      const rimLight = new THREE.DirectionalLight(0x39D96A, 1.6);
+      const rimLight = new THREE.DirectionalLight(0x4DAAFF, 1.6);
       rimLight.position.set(-3, -1, 2);
       scene.add(rimLight);
-      const fillLight = new THREE.PointLight(0x39D96A, 3, 15);
+      const fillLight = new THREE.PointLight(0x4DAAFF, 3, 15);
       fillLight.position.set(0, 2, 4);
       scene.add(fillLight);
 
@@ -1641,14 +1641,14 @@
       // Body — PBR: dark matte metal
       const bodyGeo = new THREE.BoxGeometry(1.15, 2.3, 0.14);
       const body = new THREE.Mesh(bodyGeo,
-        new THREE.MeshStandardMaterial({ color: 0x080f0a, metalness: 0.72, roughness: 0.22 })
+        new THREE.MeshStandardMaterial({ color: 0x070C14, metalness: 0.72, roughness: 0.22 })
       );
       phoneGroup.add(body);
 
       // Frame edges — green metallic outline
       phoneGroup.add(new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(1.18, 2.33, 0.13)),
-        new THREE.LineBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0.68 })
+        new THREE.LineBasicMaterial({ color: 0x4DAAFF, transparent: true, opacity: 0.68 })
       ));
 
       // Screen — canvas texture with UI content
@@ -1656,25 +1656,25 @@
       tc.width = 256; tc.height = 496;
       const ctx2 = tc.getContext('2d');
       const bg = ctx2.createLinearGradient(0, 0, 0, 496);
-      bg.addColorStop(0, '#060d07'); bg.addColorStop(1, '#020504');
+      bg.addColorStop(0, '#050C18'); bg.addColorStop(1, '#020410');
       ctx2.fillStyle = bg; ctx2.fillRect(0, 0, 256, 496);
-      ctx2.fillStyle = '#39D96A'; ctx2.font = 'bold 13px monospace';
+      ctx2.fillStyle = '#4DAAFF'; ctx2.font = 'bold 13px monospace';
       ctx2.textAlign = 'left'; ctx2.fillText('22:47', 16, 26);
-      ctx2.fillStyle = '#3a6045'; ctx2.textAlign = 'right';
+      ctx2.fillStyle = '#3a5070'; ctx2.textAlign = 'right';
       ctx2.fillText('▓▓▓ 85%', 240, 26);
-      ctx2.strokeStyle = 'rgba(57,217,106,0.15)'; ctx2.lineWidth = 1;
+      ctx2.strokeStyle = 'rgba(77,170,255,0.15)'; ctx2.lineWidth = 1;
       ctx2.beginPath(); ctx2.moveTo(0, 36); ctx2.lineTo(256, 36); ctx2.stroke();
       ctx2.textAlign = 'center';
       ctx2.fillStyle = '#F0F4F1'; ctx2.font = 'bold 32px sans-serif';
       ctx2.fillText('Tech', 128, 200);
-      ctx2.fillStyle = '#39D96A'; ctx2.fillText('logic', 128, 238);
+      ctx2.fillStyle = '#4DAAFF'; ctx2.fillText('logic', 128, 238);
       ctx2.fillStyle = '#F5C842'; ctx2.font = '20px sans-serif';
       ctx2.fillText('★ ★ ★ ★ ★', 128, 280);
-      ctx2.fillStyle = '#39D96A'; ctx2.font = 'bold 56px sans-serif';
+      ctx2.fillStyle = '#4DAAFF'; ctx2.font = 'bold 56px sans-serif';
       ctx2.fillText('5.0', 128, 352);
-      ctx2.fillStyle = '#5A7060'; ctx2.font = '12px monospace';
+      ctx2.fillStyle = '#5A7090'; ctx2.font = '12px monospace';
       ctx2.fillText('Google Reviews · 14', 128, 380);
-      ctx2.fillStyle = 'rgba(57,217,106,0.22)';
+      ctx2.fillStyle = 'rgba(77,170,255,0.22)';
       ctx2.fillRect(88, 460, 80, 5);
 
       const screenMesh = new THREE.Mesh(
@@ -1699,7 +1699,7 @@
       body.add(reflMesh2);
 
       // Side buttons — volume (left) + power (right)
-      const btnMat = new THREE.MeshStandardMaterial({ color: 0x1d4a24, metalness: 0.9, roughness: 0.18 });
+      const btnMat = new THREE.MeshStandardMaterial({ color: 0x0D2A50, metalness: 0.9, roughness: 0.18 });
       [[-0.26, 'v1'], [0.05, 'v2']].forEach(([y]) => {
         const b = new THREE.Mesh(new THREE.BoxGeometry(0.033, 0.14, 0.046), btnMat);
         b.position.set(-0.608, y, 0); body.add(b);
@@ -1725,7 +1725,7 @@
       // Scan beam — 3 layers (core, inner glow, outer glow), children of body
       const scanDefs = [[0.025, 0.92], [0.09, 0.34], [0.26, 0.11]];
       const scanLayers = scanDefs.map(([h, targetOp]) => {
-        const mat = new THREE.MeshBasicMaterial({ color: 0x39D96A, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false });
+        const mat = new THREE.MeshBasicMaterial({ color: 0x4DAAFF, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false });
         const mesh = new THREE.Mesh(new THREE.PlaneGeometry(0.95, h), mat);
         mesh.position.z = 0.078;
         body.add(mesh);
@@ -1744,7 +1744,7 @@
       }
       const pGeo = new THREE.BufferGeometry();
       pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-      scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x39D96A, size: 0.04, transparent: true, opacity: 0.5 })));
+      scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x4DAAFF, size: 0.04, transparent: true, opacity: 0.5 })));
 
       let scanY = 1.2, t = 0;
 
