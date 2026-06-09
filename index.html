@@ -163,6 +163,18 @@
       align-items: center;
       padding-top: 60px;
       overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=25&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* dark overlay so text stays legible over the circuit-board photo */
+    #hero .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(10,15,30,0.97) 0%, rgba(10,15,30,0.82) 55%, rgba(10,15,30,0.6) 100%);
+      pointer-events: none;
     }
 
     /* giant 5.0 watermark */
@@ -318,12 +330,31 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--r);
-      padding: 1.75rem;
+      padding: 0;
+      overflow: hidden;
       transition: border-color 0.25s, transform 0.25s;
     }
     .svc-card:hover {
       border-color: rgba(37, 99, 235, 0.4);
       transform: translateY(-3px);
+    }
+
+    .svc-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.82) saturate(0.85);
+      transition: filter 0.35s, transform 0.45s;
+    }
+    .svc-card:hover .svc-img {
+      filter: brightness(0.9) saturate(1);
+      transform: scale(1.04);
+    }
+
+    .svc-body {
+      padding: 1.5rem 1.6rem 1.6rem;
     }
 
     .svc-icon {
@@ -588,8 +619,19 @@
       overflow: hidden;
     }
 
-    /* animated gradient glow backdrop */
+    /* photo + gradient glow backdrop */
     #loja::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=20&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    #loja::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -1050,6 +1092,7 @@
 
   <!-- ══════════════ HERO ══════════════ -->
   <section id="hero" aria-labelledby="hero-h1">
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-wm" aria-hidden="true">5.0</div>
 
     <!-- 3D phone mockup (hidden on mobile) -->
@@ -1118,27 +1161,59 @@
       <div class="services-grid">
 
         <div class="svc-card fu fu-d1">
-          <div class="svc-icon" aria-hidden="true">📱</div>
-          <h3>Reparação de Ecrãs</h3>
-          <p>Substituição de ecrãs e sensores (iPhone e outros). Reparação no próprio dia em casos simples.</p>
+          <img
+            src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=340&fit=crop&q=75&auto=format"
+            alt="Reparação de ecrã de telemóvel"
+            class="svc-img"
+            loading="lazy"
+            width="600" height="170">
+          <div class="svc-body">
+            <div class="svc-icon" aria-hidden="true">📱</div>
+            <h3>Reparação de Ecrãs</h3>
+            <p>Substituição de ecrãs e sensores (iPhone e outros). Reparação no próprio dia em casos simples.</p>
+          </div>
         </div>
 
         <div class="svc-card fu fu-d2">
-          <div class="svc-icon" aria-hidden="true">🔍</div>
-          <h3>Diagnóstico Gratuito</h3>
-          <p>Orçamento sem compromisso antes de qualquer intervenção. Transparência total no serviço.</p>
+          <img
+            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=340&fit=crop&q=75&auto=format"
+            alt="Diagnóstico de equipamento informático"
+            class="svc-img"
+            loading="lazy"
+            width="600" height="170">
+          <div class="svc-body">
+            <div class="svc-icon" aria-hidden="true">🔍</div>
+            <h3>Diagnóstico Gratuito</h3>
+            <p>Orçamento sem compromisso antes de qualquer intervenção. Transparência total no serviço.</p>
+          </div>
         </div>
 
         <div class="svc-card fu fu-d3">
-          <div class="svc-icon" aria-hidden="true">🛡️</div>
-          <h3>Capas &amp; Acessórios</h3>
-          <p>Venda de capas resistentes para telemóvel. Proteção de qualidade para o seu dispositivo.</p>
+          <img
+            src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=340&fit=crop&q=75&auto=format"
+            alt="Capas e acessórios para telemóvel"
+            class="svc-img"
+            loading="lazy"
+            width="600" height="170">
+          <div class="svc-body">
+            <div class="svc-icon" aria-hidden="true">🛡️</div>
+            <h3>Capas &amp; Acessórios</h3>
+            <p>Venda de capas resistentes para telemóvel. Proteção de qualidade para o seu dispositivo.</p>
+          </div>
         </div>
 
         <div class="svc-card fu fu-d4">
-          <div class="svc-icon" aria-hidden="true">📦</div>
-          <h3>Entregas Rápidas</h3>
-          <p>Envio e receção de encomendas com comodidade e rapidez para os nossos clientes.</p>
+          <img
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=340&fit=crop&q=75&auto=format"
+            alt="Entrega rápida de encomendas"
+            class="svc-img"
+            loading="lazy"
+            width="600" height="170">
+          <div class="svc-body">
+            <div class="svc-icon" aria-hidden="true">📦</div>
+            <h3>Entregas Rápidas</h3>
+            <p>Envio e receção de encomendas com comodidade e rapidez para os nossos clientes.</p>
+          </div>
         </div>
 
       </div>
