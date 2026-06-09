@@ -888,12 +888,15 @@
     ──────────────────────────────────────── */
     #phone-canvas {
       position: absolute;
-      right: 5%;
+      right: -2%;
       top: 50%;
       transform: translateY(-50%);
-      width: 280px;
-      height: 520px;
+      width: 340px;
+      height: 630px;
       pointer-events: none;
+      opacity: 0.82;
+      z-index: 1;
+      mix-blend-mode: screen;
     }
 
     @media (max-width: 900px) { #phone-canvas { display: none; } }
@@ -1611,7 +1614,7 @@
       const canvas = document.getElementById('phone-canvas');
       if (!canvas || window.innerWidth <= 900) return;
 
-      const W = 280, H = 520;
+      const W = 340, H = 630;
       const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.setSize(W, H);
