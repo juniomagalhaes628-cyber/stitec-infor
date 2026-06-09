@@ -7,22 +7,22 @@
   <meta name="description" content="Reparações rápidas de telemóveis e informática em Oldrões, Penafiel. Orçamento gratuito, 5.0 ⭐ no Google. Ligue: 910 277 026">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0A0F1E;
-      --card:     #1A2744;
-      --accent:   #2563EB;
-      --accentH:  #1D4ED8;
-      --amber:    #F0B429;
-      --text:     #E8EDF5;
-      --muted:    #6B7A99;
-      --border:   rgba(255,255,255,0.07);
-      --r:        12px;
+      --bg:       #080C0A;
+      --card:     #0F1E14;
+      --accent:   #39D96A;
+      --accentH:  #2bc057;
+      --amber:    #F5C842;
+      --text:     #F0F4F1;
+      --muted:    #5A7060;
+      --border:   rgba(57,217,106,0.1);
+      --r:        10px;
     }
 
     html { scroll-behavior: smooth; }
@@ -38,16 +38,19 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 1rem;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      cursor: none;
     }
 
+    @media (hover: none) { body { cursor: auto; } }
+
     h1, h2, h3, h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      line-height: 1.15;
+      font-family: 'Bebas Neue', sans-serif;
+      line-height: 1.1;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -1071,10 +1074,143 @@
       section { padding: 4rem 0; }
       .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; }
     }
+
+    /* ══════ REPAIR LAB LAYER ══════ */
+
+    /* Scan lines */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* @property for circuit border animation */
+    @property --ga { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+    /* Circuit border on service cards */
+    .svc-card { position: relative; }
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: calc(var(--r) + 1px);
+      background: conic-gradient(from var(--ga), transparent 0%, var(--accent) 4%, rgba(57,217,106,.35) 7%, transparent 11%);
+      padding: 1px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity .3s;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .svc-card:hover::after { opacity: 1; }
+    .svc-card:hover { box-shadow: 0 0 40px rgba(57,217,106,0.12) !important; }
+
+    /* Glitch keyframes */
+    @keyframes glitchB {
+      0%  { transform: translateX(0); }
+      20% { transform: translateX(-3px); filter: hue-rotate(90deg) brightness(1.3); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-2px); filter: none; }
+      80% { transform: translateX(2px); }
+      100%{ transform: translateX(0); }
+    }
+
+    /* phonePulse green */
+    @keyframes phonePulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(57,217,106,0); }
+      50%      { box-shadow: 0 0 0 8px rgba(57,217,106,.15); }
+    }
+
+    /* blink cursor for typewriter */
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Section title → Bebas */
+    .s-title { font-family: 'Bebas Neue', sans-serif !important; letter-spacing: .05em !important; font-size: clamp(2.2rem,5vw,3.5rem) !important; line-height: 1.05 !important; }
+    .s-label { color: var(--accent); font-family: 'IBM Plex Mono', monospace; }
+
+    /* Hero watermark → faint green */
+    .hero-wm { color: rgba(57,217,106,.05) !important; }
+
+    /* Hero overlay stays dark */
+    .hero-overlay { background: linear-gradient(135deg, rgba(8,12,10,.97) 0%, rgba(8,12,10,.82) 55%, rgba(8,12,10,.6) 100%) !important; }
+
+    /* Hero badge terminal style */
+    .hero-badge { border-color: rgba(245,200,66,.25) !important; background: rgba(245,200,66,.08) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: .78rem !important; color: var(--amber) !important; }
+
+    /* Buttons */
+    .btn-primary { background: var(--accent) !important; color: var(--bg) !important; font-family: 'Bebas Neue', sans-serif !important; font-size: 1.2rem !important; letter-spacing: .07em !important; box-shadow: 0 4px 22px rgba(57,217,106,.38) !important; animation: phonePulse 2.5s ease-in-out infinite; }
+    .btn-primary:hover { background: var(--accentH) !important; transform: translateY(-2px); box-shadow: 0 6px 30px rgba(57,217,106,.55) !important; }
+    .btn-ghost { color: rgba(57,217,106,.65) !important; font-family: 'IBM Plex Mono', monospace !important; font-size: .85rem !important; }
+    .btn-ghost:hover { color: var(--accent) !important; text-decoration: none; }
+
+    /* Service card image green tint */
+    .svc-img { filter: brightness(.75) saturate(.7) hue-rotate(60deg) !important; }
+    .svc-card:hover .svc-img { filter: brightness(.88) saturate(.9) hue-rotate(60deg) !important; }
+    .svc-card h3 { font-family: 'Space Grotesk', sans-serif !important; font-size: 1.05rem !important; }
+    .svc-detail::before { content: '// '; color: rgba(57,217,106,.4); }
+
+    /* Stats */
+    .stat { background: var(--card); border: 1px solid rgba(57,217,106,.1); border-radius: var(--r); padding: 2rem 1rem; text-align: center; }
+    .stat-n { font-family: 'Bebas Neue', sans-serif !important; font-size: clamp(3rem,7vw,4.5rem) !important; line-height: 1 !important; color: var(--accent) !important; }
+    .stat-n.amber { color: var(--amber) !important; }
+    .stat-l { font-family: 'IBM Plex Mono', monospace !important; font-size: .72rem !important; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+
+    /* Phone mockup → green theme */
+    .phone-body { background: linear-gradient(150deg, #1a3020, #0d1a10) !important; border-color: rgba(57,217,106,.25) !important; }
+    .phone-screen { background: linear-gradient(175deg, #080C0A, #0d1a10) !important; }
+    .phone-screen::before { background: radial-gradient(ellipse 80% 50% at 50% 30%, rgba(57,217,106,.18) 0%, transparent 70%) !important; }
+    .phone-rating { color: var(--accent) !important; font-family: 'Bebas Neue', sans-serif !important; }
+    .phone-stars { color: var(--amber) !important; }
+    .phone-notif-dot { background: var(--accent) !important; box-shadow: 0 0 0 3px rgba(57,217,106,.2) !important; }
+
+    /* Nav */
+    #nav { border-bottom-color: rgba(57,217,106,.1) !important; }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif !important; font-size: 1.5rem !important; letter-spacing: .08em; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace !important; font-size: .73rem !important; text-transform: lowercase; letter-spacing: .05em; }
+    .nav-cta { border: 1px solid var(--accent) !important; background: transparent !important; color: var(--accent) !important; font-size: .73rem !important; }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
+
+    /* Loja section → green theme */
+    .loja-card { border-color: rgba(57,217,106,.25) !important; box-shadow: 0 0 60px rgba(57,217,106,.08), inset 0 1px 0 rgba(255,255,255,.05) !important; }
+    .loja-card::before { background: linear-gradient(90deg, transparent, var(--accent), var(--amber), var(--accent), transparent) !important; }
+    .loja-ring { border-color: rgba(57,217,106,.18) !important; }
+    .loja-badge { background: rgba(245,200,66,.1) !important; border-color: rgba(245,200,66,.2) !important; }
+    .loja-title .hl { background: linear-gradient(135deg, var(--accent) 0%, #7ff5a8 100%) !important; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* Map → dark green filter */
+    .map-wrap iframe { filter: grayscale(100%) invert(90%) hue-rotate(130deg) brightness(.7) contrast(1.2) !important; }
+
+    /* CTA phone button */
+    .cta-big { background: var(--accent) !important; color: var(--bg) !important; box-shadow: 0 4px 22px rgba(57,217,106,.35) !important; animation: phonePulse 2.5s ease-in-out infinite; }
+    .cta-big:hover { background: var(--accentH) !important; }
+
+    /* Testimonials horizontal scroll */
+    #tscroll { display: flex; gap: 1.1rem; overflow-x: auto; padding: .5rem 0 1.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(57,217,106,.3) transparent; cursor: grab; }
+    #tscroll:active { cursor: grabbing; }
+    #tscroll::-webkit-scrollbar { height: 3px; }
+    #tscroll::-webkit-scrollbar-thumb { background: rgba(57,217,106,.3); border-radius: 2px; }
+    .tcard { flex-shrink: 0; width: 310px; background: var(--card); border: 1px solid rgba(57,217,106,.1); border-radius: var(--r); padding: 1.4rem; scroll-snap-align: start; font-family: 'IBM Plex Mono', monospace; font-size: .78rem; line-height: 1.9; transform-style: flat !important; }
+    .tcard-log { margin-top: .5rem; color: rgba(240,244,241,.75); font-style: italic; padding-left: 1rem; border-left: 1px solid rgba(57,217,106,.2); }
+
+    /* Mobile CTA */
+    @media (max-width: 640px) {
+      #mobile-cta { display: block !important; }
+      section { padding-bottom: 6rem; }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Custom cursor -->
+  <div id="cursor" aria-hidden="true"></div>
+  <!-- Scroll progress -->
+  <div id="scroll-bar" aria-hidden="true"></div>
 
   <!-- ══════════════ NAV ══════════════ -->
   <header id="nav" role="banner">
@@ -1121,25 +1257,28 @@
       <div class="hero-body">
 
         <div class="hero-badge" role="img" aria-label="5.0 estrelas — 14 avaliações Google">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          5.0 &nbsp;·&nbsp; 14 avaliações Google
+          ★★★★★ &nbsp;5.0 · 14 reviews · Google
         </div>
 
-        <h1 id="hero-h1">
-          A sua tecnologia,<br>
-          <em>restaurada.</em>
+        <h1 id="hero-h1" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,8rem);line-height:.92;letter-spacing:.01em;margin-bottom:1.25rem;">
+          <span style="display:block;color:var(--text);">REPARAMOS</span>
+          <span style="display:block;color:var(--accent);">
+            <span id="glitch-word" data-text="iPhones." style="display:inline-block;">iPhones.</span>
+          </span>
         </h1>
 
-        <p class="hero-sub">
-          Reparações rápidas, orçamento gratuito, atendimento de confiança<br class="br-desk"> em Oldrões, Penafiel.
+        <p class="hero-sub" style="font-family:'IBM Plex Mono',monospace;font-size:.875rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.9;">
+          // orçamento: GRATUITO<br>
+          // tempo_resposta: mesmo_dia<br>
+          // localização: EN106, Oldrões, Penafiel
         </p>
 
         <div class="hero-actions">
           <a href="tel:910277026" class="btn btn-primary">
-            📞 Ligar agora &rarr; 910 277 026
+            📞 LIGAR — 910 277 026
           </a>
           <a href="#servicos" class="btn btn-ghost">
-            Ver serviços &darr;
+            ver_serviços() ↓
           </a>
         </div>
 
@@ -1153,9 +1292,9 @@
     <div class="wrap">
 
       <div class="s-head">
-        <span class="s-label">O que fazemos</span>
-        <h2 class="s-title" id="svc-title">Serviços</h2>
-        <p class="s-sub">Desde reparações a acessórios, tratamos de tudo com rapidez e profissionalismo.</p>
+        <span class="s-label">// módulo: serviços</span>
+        <h2 class="s-title" id="svc-title">O QUE FAZEMOS</h2>
+        <p class="s-sub">// reparações · diagnósticos · acessórios · entregas</p>
       </div>
 
       <div class="services-grid">
@@ -1227,18 +1366,18 @@
       <div class="stats-grid">
 
         <div class="stat fu">
-          <div class="stat-n">5.0 ⭐</div>
-          <div class="stat-l">Classificação Google</div>
+          <div class="stat-n amber">5.0 ⭐</div>
+          <div class="stat-l">classificação_google</div>
         </div>
 
         <div class="stat fu fu-d1">
-          <div class="stat-n">+5 anos</div>
-          <div class="stat-l">Em atividade</div>
+          <div class="stat-n">+5 ANOS</div>
+          <div class="stat-l">em_atividade</div>
         </div>
 
         <div class="stat fu fu-d2">
           <div class="stat-n">14</div>
-          <div class="stat-l">Clientes satisfeitos</div>
+          <div class="stat-l">clientes_satisfeitos</div>
         </div>
 
       </div>
@@ -1296,99 +1435,87 @@
 
 
   <!-- ══════════════ TESTIMONIALS ══════════════ -->
-  <section id="testemunhos" aria-labelledby="test-title">
+  <section id="testemunhos" aria-labelledby="test-title" style="background:rgba(15,30,20,.3);border-top:1px solid rgba(57,217,106,.08);">
     <div class="wrap">
-
       <div class="s-head">
-        <span class="s-label">Avaliações Google</span>
-        <h2 class="s-title" id="test-title">O que dizem os clientes</h2>
-        <p class="s-sub">14 avaliações, todas a 5 estrelas. A reputação fala por si.</p>
+        <span class="s-label">// módulo: reviews</span>
+        <h2 class="s-title" id="test-title">LOG DE CLIENTES</h2>
+        <p class="s-sub">// 14 entradas · todos 5★ · fonte: Google Reviews</p>
       </div>
+    </div>
+    <div class="wrap" style="overflow:visible;">
+      <div id="tscroll">
 
-      <div class="tgrid">
-
-        <article class="tcard fu">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Atendimento excelente, rápidos nas entregas e super disponíveis a ajudar o cliente."</p>
-          <footer class="tcard-author">Mafalda Ferreira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Mafalda Ferreira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Atendimento excelente, rápidos nas entregas e super disponíveis a ajudar o cliente."</div>
         </article>
 
-        <article class="tcard fu fu-d1">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Excelente loja! Serviço rápido e super atenciosos."</p>
-          <footer class="tcard-author">Vania Lopes</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Vania Lopes</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Excelente loja! Serviço rápido e super atenciosos."</div>
         </article>
 
-        <article class="tcard fu fu-d2">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Capas muito boas, bonitas e resistentes, muito satisfeita. Obrigada 🌟🌟🌟🌟"</p>
-          <footer class="tcard-author">Cristina Tavares</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Cristina Tavares</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Capas muito boas, bonitas e resistentes, muito satisfeita. Obrigada 🌟🌟🌟🌟"</div>
         </article>
 
-        <article class="tcard fu">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Loja incrível, bom trabalho, entrega rápida!"</p>
-          <footer class="tcard-author">Ana Luísa</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Ana Luísa</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Loja incrível, bom trabalho, entrega rápida!"</div>
         </article>
 
-        <article class="tcard fu fu-d1">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Uma empresa de excelência sem dúvida! Desde o atendimento ao profissionalismo não há nada a apontar. Sou um cliente satisfeito com todas as reparações e compras lá realizadas. Aconselho vivamente!"</p>
-          <footer class="tcard-author">Carlos Vieira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Carlos Vieira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Uma empresa de excelência sem dúvida! Desde o atendimento ao profissionalismo não há nada a apontar. Aconselho vivamente!"</div>
         </article>
 
-        <article class="tcard fu fu-d2">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Recomendo 5★ — atendimento acolhedor, reparação no mesmo dia, orçamento gratuito para o iPhone, ecrã e sensores reparados com sucesso. Top 👌"</p>
-          <footer class="tcard-author">Joaquim Cruz</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Joaquim Cruz</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">STATUS:</span> <span style="color:var(--accent);">✓ resolvido_no_próprio_dia</span></div>
+          <div class="tcard-log">"Orçamento gratuito, ecrã e sensores reparados com sucesso. Top 👌"</div>
         </article>
 
-        <article class="tcard fu">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Ótimos a realizar reparações. Fiquei muito contente com o serviço."</p>
-          <footer class="tcard-author">Ruca Pinto</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Ruca Pinto</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Ótimos a realizar reparações. Fiquei muito contente com o serviço."</div>
         </article>
 
-        <article class="tcard fu fu-d1">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Capas super confortáveis e seguras."</p>
-          <footer class="tcard-author">Lúcia Costa</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Lúcia Costa</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Capas super confortáveis e seguras."</div>
         </article>
 
-        <article class="tcard fu fu-d2">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Adorei o atendimento. Serviço excelente."</p>
-          <footer class="tcard-author">Luana Teixeira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Luana Teixeira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Adorei o atendimento. Serviço excelente."</div>
         </article>
 
-        <article class="tcard fu">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Bom trabalho."</p>
-          <footer class="tcard-author">Leonor Zamith</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Leonor Zamith</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Bom trabalho."</div>
         </article>
 
-        <article class="tcard fu fu-d1">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Resolveram o problema rapidamente. Obrigado."</p>
-          <footer class="tcard-author">Manuel Teixeira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Manuel Teixeira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Resolveram o problema rapidamente. Obrigado."</div>
         </article>
 
-        <article class="tcard fu fu-d2">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Atendimento excelente."</p>
-          <footer class="tcard-author">Patrícia Teixeira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Patrícia Teixeira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Atendimento excelente."</div>
         </article>
 
-        <article class="tcard fu">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">"Adorei o atendimento."</p>
-          <footer class="tcard-author">Rosa Teixeira</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Rosa Teixeira</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div class="tcard-log">"Adorei o atendimento."</div>
         </article>
 
-        <article class="tcard fu fu-d1">
-          <div class="tcard-stars" aria-label="5 estrelas">★★★★★</div>
-          <p class="tcard-text">Cliente fiel há 5 anos. ⭐⭐⭐⭐⭐</p>
-          <footer class="tcard-author">Mané Seabra</footer>
+        <article class="tcard">
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">CLIENTE:</span> <span>Mané Seabra</span> <span style="color:var(--amber);">★★★★★</span></div>
+          <div><span style="color:var(--accent);">&gt;</span> <span style="color:var(--muted);">FIDELIDADE:</span> <span style="color:var(--amber);">5 anos</span></div>
+          <div class="tcard-log">Cliente fiel. ⭐⭐⭐⭐⭐</div>
         </article>
 
       </div>
@@ -1401,8 +1528,8 @@
     <div class="wrap">
 
       <div class="s-head">
-        <span class="s-label">Encontre-nos</span>
-        <h2 class="s-title" id="contact-title">Contacto &amp; Horário</h2>
+        <span class="s-label">// módulo: localização</span>
+        <h2 class="s-title" id="contact-title">CONTACTO &amp; HORÁRIO</h2>
       </div>
 
       <div class="contact-grid">
@@ -1504,9 +1631,65 @@
   </footer>
 
 
+  <!-- Mobile CTA -->
+  <div id="mobile-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(8,12,10,.96);border-top:1px solid rgba(57,217,106,.2);padding:.75rem 1.25rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);">
+    <a href="tel:910277026" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#39D96A;color:#080C0A;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;padding:.75rem;border-radius:10px;text-decoration:none;">📞 &nbsp;LIGAR — 910 277 026</a>
+  </div>
+
   <!-- ══════════════ JS ══════════════ -->
   <script>
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── Scroll progress ── */
+    const sb = document.getElementById('scroll-bar');
+    if (sb) {
+      Object.assign(sb.style, { position:'fixed', top:'0', left:'0', height:'2px', width:'0%', background:'#39D96A', zIndex:'9999', boxShadow:'0 0 8px #39D96A' });
+      window.addEventListener('scroll', () => {
+        sb.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+      }, { passive: true });
+    }
+
+    /* ── Custom cursor ── */
+    const cur = document.getElementById('cursor');
+    if (cur && !reduced && window.matchMedia('(hover: hover)').matches) {
+      Object.assign(cur.style, { position:'fixed', top:'0', left:'0', width:'14px', height:'14px', border:'1.5px solid #39D96A', borderRadius:'50%', pointerEvents:'none', zIndex:'9998', transition:'width .2s, height .2s, background .2s', willChange:'transform' });
+      let mx = 0, my = 0, cx = 0, cy = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      document.querySelectorAll('a, button, .svc-card, #tscroll').forEach(el => {
+        el.addEventListener('mouseenter', () => { cur.style.width = '30px'; cur.style.height = '30px'; cur.style.background = 'rgba(57,217,106,.12)'; });
+        el.addEventListener('mouseleave', () => { cur.style.width = '14px'; cur.style.height = '14px'; cur.style.background = ''; });
+      });
+      (function tick() { cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12; cur.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`; requestAnimationFrame(tick); })();
+    } else if (cur) { cur.style.display = 'none'; }
+
+    /* ── Glitch headline ── */
+    if (!reduced) {
+      const words = ['iPhones.', 'Computadores.', 'Capas.', 'Tudo.'];
+      let idx = 0;
+      const gw = document.getElementById('glitch-word');
+      if (gw) {
+        setInterval(() => {
+          gw.style.animation = 'glitchB .3s steps(4) forwards';
+          setTimeout(() => {
+            idx = (idx + 1) % words.length;
+            gw.textContent = words[idx];
+            gw.setAttribute('data-text', words[idx]);
+            gw.style.animation = '';
+          }, 310);
+        }, 2600);
+      }
+    }
+
+    /* ── Circuit border on service cards (RAF-based) ── */
+    if (!reduced) {
+      document.querySelectorAll('.svc-card').forEach(card => {
+        let angle = 0, rafId;
+        card.addEventListener('mouseenter', () => {
+          (function rot() { angle = (angle + 1.8) % 360; card.style.setProperty('--ga', angle + 'deg'); rafId = requestAnimationFrame(rot); })();
+        });
+        card.addEventListener('mouseleave', () => { cancelAnimationFrame(rafId); card.style.setProperty('--ga', '0deg'); });
+      });
+    }
 
     /* ── Fade-up on scroll ── */
     const ioFade = new IntersectionObserver((entries) => {
@@ -1520,97 +1703,89 @@
     document.querySelectorAll('.fu').forEach(el => ioFade.observe(el));
 
 
-    /* ── 3D card tilt on mouse move ── */
-    if (!reduced) {
-      const tiltCards = document.querySelectorAll('.svc-card, .tcard, .loja-card');
-
-      tiltCards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width  - 0.5;
-          const y = (e.clientY - r.top)  / r.height - 0.5;
-          const intensity = card.classList.contains('loja-card') ? 6 : 10;
-          card.style.transition = 'transform 0.1s ease, border-color 0.25s, box-shadow 0.4s';
-          card.style.transform  = `perspective(700px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) translateY(-4px) scale(1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          card.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1), border-color 0.25s, box-shadow 0.4s';
-          card.style.transform  = '';
-        });
-      });
-    }
-
-
-    /* ── Counter animation for stats ── */
-    function animateCount(el, target, suffix, duration) {
-      const start = performance.now();
-      const isFloat = String(target).includes('.');
-      function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3); // ease-out-cubic
-        const val = isFloat
-          ? (ease * target).toFixed(1)
-          : Math.round(ease * target);
-        el.textContent = val + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-
-    const statEls = document.querySelectorAll('.stat-n');
-    const ioStats = new IntersectionObserver((entries) => {
+    /* ── Counter animation ── */
+    const ioStats = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
         ioStats.unobserve(e.target);
+        if (reduced) return;
         const el = e.target;
         const txt = el.textContent.trim();
-        if (txt.startsWith('5.0')) {
-          if (!reduced) animateCount(el, 5.0, ' ⭐', 1200);
-        } else if (txt.startsWith('+5')) {
-          if (!reduced) {
-            let n = 0;
-            const t = setInterval(() => {
-              n++;
-              el.textContent = '+' + n + ' anos';
-              if (n >= 5) clearInterval(t);
-            }, 180);
-          }
-        } else if (txt === '14') {
-          if (!reduced) animateCount(el, 14, '', 1000);
+        const dur = 1400, start = performance.now();
+        const isFloat = txt.includes('.');
+        const num = parseFloat(txt.replace(/[^0-9.]/g, ''));
+        const suffix = txt.replace(/^[\+\d\.]+/, '').trim();
+        const prefix = txt.startsWith('+') ? '+' : '';
+        function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + (isFloat ? (ease * num).toFixed(1) : Math.round(ease * num)) + (suffix ? ' ' + suffix : '');
+          if (p < 1) requestAnimationFrame(tick);
         }
+        requestAnimationFrame(tick);
       });
     }, { threshold: 0.5 });
-    statEls.forEach(el => ioStats.observe(el));
-
+    document.querySelectorAll('.stat-n').forEach(el => ioStats.observe(el));
 
     /* ── Parallax on hero watermark ── */
     if (!reduced) {
       const wm = document.querySelector('.hero-wm');
-      if (wm) {
-        window.addEventListener('scroll', () => {
-          const y = window.scrollY;
-          wm.style.transform = `translateY(calc(-52% + ${y * 0.18}px))`;
-        }, { passive: true });
-      }
+      if (wm) window.addEventListener('scroll', () => { wm.style.transform = `translateY(calc(-52% + ${window.scrollY * 0.18}px))`; }, { passive: true });
     }
 
+    /* ── Testimonials drag-to-scroll + typewriter ── */
+    const ts = document.getElementById('tscroll');
+    if (ts) {
+      let down = false, sx, sl;
+      ts.addEventListener('mousedown', e => { down = true; sx = e.pageX - ts.offsetLeft; sl = ts.scrollLeft; ts.style.cursor = 'grabbing'; });
+      ts.addEventListener('mouseleave', () => { down = false; ts.style.cursor = 'grab'; });
+      ts.addEventListener('mouseup', () => { down = false; ts.style.cursor = 'grab'; });
+      ts.addEventListener('mousemove', e => { if (!down) return; e.preventDefault(); ts.scrollLeft = sl - (e.pageX - ts.offsetLeft - sx) * 1.5; });
 
-    /* ── Active nav link highlight ── */
-    const sections = document.querySelectorAll('section[id]');
-    const navAs    = document.querySelectorAll('.nav-links a[href^="#"]');
+      function typeLog(card) {
+        if (card.dataset.typed || reduced) return;
+        card.dataset.typed = '1';
+        const log = card.querySelector('.tcard-log');
+        if (!log) return;
+        const text = log.textContent;
+        log.textContent = '';
+        const blink = document.createElement('span');
+        blink.textContent = '█';
+        blink.style.cssText = 'color:#39D96A;animation:blink .8s step-end infinite;';
+        log.appendChild(blink);
+        let i = 0;
+        const iv = setInterval(() => {
+          log.insertBefore(document.createTextNode(text[i++]), blink);
+          if (i >= text.length) { clearInterval(iv); setTimeout(() => blink.remove(), 700); }
+        }, 18);
+      }
 
-    const nioNav = new IntersectionObserver((entries) => {
+      function checkVisible() {
+        const cr = ts.getBoundingClientRect();
+        ts.querySelectorAll('.tcard').forEach(card => {
+          const r = card.getBoundingClientRect();
+          if (r.left < cr.right + 60 && r.right > cr.left) typeLog(card);
+        });
+      }
+      ts.addEventListener('scroll', checkVisible, { passive: true });
+      new IntersectionObserver(e => { if (e[0].isIntersecting) { setTimeout(checkVisible, 400); } }, { threshold: 0.1 }).observe(ts);
+    }
+
+    /* ── Active nav ── */
+    const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+    new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           const id = '#' + e.target.id;
-          navAs.forEach(a => {
-            a.style.color = a.getAttribute('href') === id ? 'var(--text)' : '';
-          });
+          navAs.forEach(a => a.style.color = a.getAttribute('href') === id ? 'var(--accent)' : '');
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(s => nioNav.observe(s));
+
+    const navObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { const id = '#' + e.target.id; navAs.forEach(a => a.style.color = a.getAttribute('href') === id ? 'var(--accent)' : ''); } });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
   </script>
 
 </body>
