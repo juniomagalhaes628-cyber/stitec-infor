@@ -278,7 +278,29 @@
     @keyframes stepShow { 0% { opacity: 0; transform: translateY(8px); } 8% { opacity: 1; transform: translateY(0); } 25% { opacity: 1; transform: translateY(0); } 33% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 0; transform: translateY(-8px); } }
     @media (prefers-reduced-motion: reduce) { .phone-orbit-ring, .phone-orbit-ring-2 { animation: none; } .hero-glow-orb { animation: none; } .phone-step { opacity: 1; transform: none; animation: none; } .phone-step:not(:first-child) { display: none; } }
 
-    @media (max-width: 480px) { section { padding: 4rem 0; } .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; } }
+    @media (max-width: 480px) {
+      section { padding: 4rem 0; }
+      .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; }
+      .svc-img { height: 140px; }
+      .svc-body { padding: 1.2rem 1.3rem 1.3rem; }
+    }
+
+    @media (max-width: 640px) {
+      .map-wrap { height: 240px; }
+    }
+
+    @media (max-width: 600px) {
+      .stat::after { display: none; }
+      .stats-grid { gap: 0.5rem; }
+      .stat { border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+      .stat:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary { text-align: center; justify-content: center; }
+      .hero-badge { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
+    }
   </style>
 </head>
 <body>
