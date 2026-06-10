@@ -5,6 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Techlogic — Reparações de Telemóveis em Oldrões, Penafiel</title>
   <meta name="description" content="Reparações rápidas de telemóveis e informática em Oldrões, Penafiel. Orçamento gratuito, 5.0 ⭐ no Google. Ligue: 910 277 026">
+
+  <!-- Open Graph / partilha social -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://juniomagalhaes628-cyber.github.io/stitec-infor/">
+  <meta property="og:title"       content="Techlogic — Reparações de Telemóveis em Oldrões, Penafiel">
+  <meta property="og:description" content="Reparações rápidas, orçamento gratuito, 5.0 ⭐ no Google. Ligue: 910 277 026">
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563EB">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Techlogic",
+    "description": "Reparações rápidas de telemóveis e informática em Oldrões, Penafiel.",
+    "telephone": "+351910277026",
+    "url": "https://juniomagalhaes628-cyber.github.io/stitec-infor/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oldrões",
+      "addressRegion": "Penafiel",
+      "addressCountry": "PT"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 41.204, "longitude": -8.285 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "10:00", "closes": "17:30" }
+    ],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "14" },
+    "priceRange": "€€"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -62,7 +102,7 @@
     .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .nav-mobile { display: none; flex-direction: column; background: rgba(10,15,30,0.98); border-top: 1px solid var(--border); max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
-    .nav-mobile.open { max-height: 280px; padding: 0.75rem 0; }
+    .nav-mobile.open { max-height: 400px; padding: 0.75rem 0; }
     .nav-mobile a { display: block; padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 500; color: var(--muted); transition: color 0.2s, background 0.2s; }
     .nav-mobile a:hover { color: var(--text); background: rgba(255,255,255,0.04); text-decoration: none; }
     .nav-mobile .mob-cta { margin: 0.5rem 1.5rem; padding: 0.75rem 1rem; background: var(--accent); color: #fff !important; border-radius: 8px; text-align: center; font-weight: 600 !important; display: block; }
@@ -278,11 +318,60 @@
     @keyframes stepShow { 0% { opacity: 0; transform: translateY(8px); } 8% { opacity: 1; transform: translateY(0); } 25% { opacity: 1; transform: translateY(0); } 33% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 0; transform: translateY(-8px); } }
     @media (prefers-reduced-motion: reduce) { .phone-orbit-ring, .phone-orbit-ring-2 { animation: none; } .hero-glow-orb { animation: none; } .phone-step { opacity: 1; transform: none; animation: none; } .phone-step:not(:first-child) { display: none; } }
 
+    /* light mode */
+    html.light { --bg: #F0F4FF; --card: #FFFFFF; --text: #0D1424; --muted: #4B5A7A; --border: rgba(0,0,0,0.1); }
+    html.light #nav { background: rgba(240,244,255,0.92); }
+    html.light .hero-overlay { background: linear-gradient(135deg,rgba(240,244,255,0.95) 0%, rgba(240,244,255,0.7) 55%, rgba(240,244,255,0.45) 100%) !important; }
+    html.light .nav-mobile { background: rgba(240,244,255,0.98); }
+    html.light .form-group input, html.light .form-group textarea { background: rgba(0,0,0,0.04); }
+
+    /* theme toggle */
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; color: var(--muted); display: flex; align-items: center; justify-content: center; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+    .theme-toggle:hover { color: var(--accent); border-color: rgba(37,99,235,0.4); }
+    .icon-sun { display: none; }
+    html.light .icon-moon { display: none; }
+    html.light .icon-sun { display: block; }
+
+    /* como funciona */
+    #como-funciona { background: rgba(26,39,68,0.18); }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; }
+    .step-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 2rem 1.8rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s; }
+    .step-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-3px); }
+    .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; color: rgba(37,99,235,0.1); line-height: 1; position: absolute; top: 1rem; right: 1.25rem; }
+    .step-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .step-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* svc price badge */
+    .svc-price { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.85rem; margin-bottom: 0.2rem; font-size: 0.82rem; font-weight: 700; color: var(--accent); background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.18); border-radius: 100px; padding: 0.2rem 0.7rem; }
+
+    /* faq */
+    #faq { background: rgba(26,39,68,0.28); }
+    .faq-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 720px; margin: 0 auto; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: rgba(37,99,235,0.35); }
+    .faq-q { list-style: none; padding: 1.2rem 1.5rem; font-weight: 600; font-size: 0.97rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--accent); font-weight: 400; transition: transform 0.25s; flex-shrink: 0; margin-left: 1rem; }
+    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-a { padding: 0 1.5rem 1.2rem; font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin: 0; }
+
+    /* contact form */
+    .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+    .form-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-group input, .form-group textarea { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 0.65rem 0.9rem; color: var(--text); font-size: 0.92rem; font-family: 'Inter', sans-serif; width: 100%; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: rgba(37,99,235,0.5); box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); opacity: 0.7; }
+
     @media (max-width: 480px) {
       section { padding: 4rem 0; }
       .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; }
       .svc-img { height: 140px; }
       .svc-body { padding: 1.2rem 1.3rem 1.3rem; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -312,16 +401,24 @@
       <a href="#hero" class="nav-logo">Tech<span>logic</span></a>
       <ul class="nav-links" role="list">
         <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#testemunhos">Avaliações</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="tel:910277026" class="nav-cta">📞 910 277 026</a></li>
       </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="nav-mobile" id="nav-mobile" aria-label="Navegação mobile">
       <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#faq">FAQ</a>
       <a href="#testemunhos">Avaliações</a>
       <a href="#contacto">Contacto</a>
       <a href="tel:910277026" class="mob-cta">📞 910 277 026</a>
@@ -374,6 +471,36 @@
     </div></div>
   </section>
 
+  <section id="como-funciona" aria-labelledby="como-title">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-label">Processo simples</span>
+        <h2 class="s-title" id="como-title">Como funciona</h2>
+        <p class="s-sub">Da avaria à entrega em 3 passos — sem surpresas no preço.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card fu fu-d1">
+          <div class="step-num" aria-hidden="true">01</div>
+          <div class="step-icon" aria-hidden="true">📱</div>
+          <h3>Traz o aparelho</h3>
+          <p>Passa pela loja em Oldrões ou contacta-nos primeiro pelo WhatsApp. Aceitamos todos os modelos.</p>
+        </div>
+        <div class="step-card fu fu-d2">
+          <div class="step-num" aria-hidden="true">02</div>
+          <div class="step-icon" aria-hidden="true">🔍</div>
+          <h3>Diagnóstico gratuito</h3>
+          <p>Avaliamos o problema sem custos. Só pagas se avançares com a reparação — sem compromisso.</p>
+        </div>
+        <div class="step-card fu fu-d3">
+          <div class="step-num" aria-hidden="true">03</div>
+          <div class="step-icon" aria-hidden="true">✅</div>
+          <h3>Pronto no próprio dia</h3>
+          <p>A maioria das reparações fica pronta em 1–2 horas. Avisamos quando estiver pronto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="servicos" aria-labelledby="svc-title">
     <div class="wrap">
       <div class="s-head">
@@ -384,19 +511,19 @@
       <div class="services-grid">
         <div class="svc-card fu fu-d1">
           <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=340&fit=crop&q=75&auto=format" alt="Reparação de ecrã de telemóvel" class="svc-img" loading="lazy" width="600" height="170">
-          <div class="svc-body"><div class="svc-icon" aria-hidden="true">📱</div><h3>Reparação de Ecrãs</h3><p>Substituição de ecrãs e sensores (iPhone e outros). Reparação no próprio dia em casos simples.</p><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
+          <div class="svc-body"><div class="svc-icon" aria-hidden="true">📱</div><h3>Reparação de Ecrãs</h3><p>Substituição de ecrãs e sensores (iPhone e outros). Reparação no próprio dia em casos simples.</p><div class="svc-price">A partir de 35€</div><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
         </div>
         <div class="svc-card fu fu-d2">
           <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=340&fit=crop&q=75&auto=format" alt="Diagnóstico de equipamento informático" class="svc-img" loading="lazy" width="600" height="170">
-          <div class="svc-body"><div class="svc-icon" aria-hidden="true">🔍</div><h3>Diagnóstico Gratuito</h3><p>Orçamento sem compromisso antes de qualquer intervenção. Transparência total no serviço.</p><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
+          <div class="svc-body"><div class="svc-icon" aria-hidden="true">🔍</div><h3>Diagnóstico Gratuito</h3><p>Orçamento sem compromisso antes de qualquer intervenção. Transparência total no serviço.</p><div class="svc-price">Grátis</div><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
         </div>
         <div class="svc-card fu fu-d3">
           <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=340&fit=crop&q=75&auto=format" alt="Capas e acessórios para telemóvel" class="svc-img" loading="lazy" width="600" height="170">
-          <div class="svc-body"><div class="svc-icon" aria-hidden="true">🛡️</div><h3>Capas &amp; Acessórios</h3><p>Venda de capas resistentes para telemóvel. Proteção de qualidade para o seu dispositivo.</p><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
+          <div class="svc-body"><div class="svc-icon" aria-hidden="true">🛡️</div><h3>Capas &amp; Acessórios</h3><p>Venda de capas resistentes para telemóvel. Proteção de qualidade para o seu dispositivo.</p><div class="svc-price">A partir de 8€</div><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
         </div>
         <div class="svc-card fu fu-d4">
           <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=340&fit=crop&q=75&auto=format" alt="Entrega rápida de encomendas" class="svc-img" loading="lazy" width="600" height="170">
-          <div class="svc-body"><div class="svc-icon" aria-hidden="true">📦</div><h3>Entregas Rápidas</h3><p>Envio e receção de encomendas com comodidade e rapidez para os nossos clientes.</p><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
+          <div class="svc-body"><div class="svc-icon" aria-hidden="true">📦</div><h3>Entregas Rápidas</h3><p>Envio e receção de encomendas com comodidade e rapidez para os nossos clientes.</p><div class="svc-price">Consultar</div><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
         </div>
       </div>
     </div>
@@ -467,6 +594,38 @@
     </div>
   </section>
 
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-label">Perguntas frequentes</span>
+        <h2 class="s-title" id="faq-title">FAQ</h2>
+        <p class="s-sub">As dúvidas mais comuns, respondidas de forma direta.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item fu">
+          <summary class="faq-q">Quanto tempo demora uma reparação?</summary>
+          <p class="faq-a">A maioria das reparações simples (ecrã, bateria, conector) fica pronta no mesmo dia, normalmente em 1 a 2 horas. Avarias mais complexas podem demorar até 48 horas.</p>
+        </details>
+        <details class="faq-item fu fu-d1">
+          <summary class="faq-q">O diagnóstico é mesmo gratuito?</summary>
+          <p class="faq-a">Sim, 100% gratuito e sem compromisso. Só pagas se aprovares o orçamento e avançares com a reparação.</p>
+        </details>
+        <details class="faq-item fu fu-d2">
+          <summary class="faq-q">Que marcas e modelos reparam?</summary>
+          <p class="faq-a">Reparamos iPhone (todos os modelos), Samsung, Xiaomi, Huawei, e a maioria dos smartphones Android. Em caso de dúvida, contacta-nos antes de vires.</p>
+        </details>
+        <details class="faq-item fu fu-d3">
+          <summary class="faq-q">As reparações têm garantia?</summary>
+          <p class="faq-a">Sim, todas as reparações têm garantia de 90 dias nas peças e mão de obra.</p>
+        </details>
+        <details class="faq-item fu fu-d4">
+          <summary class="faq-q">Como posso pedir um orçamento?</summary>
+          <p class="faq-a">Podes ligar para 910 277 026, enviar mensagem pelo WhatsApp, ou preencher o formulário de contacto nesta página. Respondemos em minutos durante o horário de atendimento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section id="contacto" aria-labelledby="contact-title">
     <div class="wrap">
       <div class="s-head"><span class="s-label">Encontre-nos</span><h2 class="s-title" id="contact-title">Contacto &amp; Horário</h2></div>
@@ -490,7 +649,31 @@
             </div>
           </div>
           <div class="citem fu fu-d3"><div class="citem-icon" aria-hidden="true">📘</div><div class="citem-body"><h4>Facebook</h4><a href="https://www.facebook.com/techlogicc" target="_blank" rel="noopener noreferrer">facebook.com/techlogicc</a></div></div>
-          <a href="tel:910277026" class="cta-big fu fu-d4">📞 Ligar agora &mdash; 910 277 026</a>
+          <form class="contact-form fu fu-d4" id="contact-form" novalidate>
+            <h3 class="form-title">Pedir orçamento</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Nome *</label>
+                <input type="text" id="cf-name" name="name" placeholder="O seu nome" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="cf-phone">Telemóvel *</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="9XX XXX XXX" required autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-device">Dispositivo</label>
+              <input type="text" id="cf-device" name="device" placeholder="ex: iPhone 14, Samsung S23...">
+            </div>
+            <div class="form-group">
+              <label for="cf-msg">Descrição do problema</label>
+              <textarea id="cf-msg" name="message" rows="3" placeholder="Descreva o que aconteceu..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              Enviar via WhatsApp
+            </button>
+          </form>
         </div>
         <div class="map-wrap fu fu-d1">
           <iframe src="https://maps.google.com/maps?cid=17817619190137157780&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Techlogic — Oldrões, Penafiel no Google Maps"></iframe>
@@ -504,6 +687,7 @@
       <div class="footer-logo">Tech<span>logic</span><small>Oldrões, Penafiel</small></div>
       <ul class="footer-links" role="list">
         <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#testemunhos">Avaliações</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -652,7 +836,8 @@
       if (!cvs) return;
       const ctx2d = cvs.getContext('2d');
       let pts = [], raf2 = null;
-      const N = 60, LINK = 115;
+      const N = window.innerWidth < 640 ? 25 : 60;
+      const LINK = window.innerWidth < 640 ? 90 : 115;
       function resizeCvs() { cvs.width = cvs.offsetWidth || 1; cvs.height = cvs.offsetHeight || 1; }
       function initPts() { pts = []; for (let i=0;i<N;i++) pts.push({x:Math.random()*cvs.width,y:Math.random()*cvs.height,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28}); }
       function drawCvs() {
@@ -673,6 +858,29 @@
       new ResizeObserver(()=>{resizeCvs();initPts();}).observe(document.getElementById('hero'));
       resizeCvs(); initPts(); raf2=requestAnimationFrame(drawCvs);
     })();
+
+    /* ── Light mode toggle ── */
+    (function() {
+      const themeBtn = document.getElementById('theme-toggle');
+      const root = document.documentElement;
+      if (localStorage.getItem('theme') === 'light') root.classList.add('light');
+      themeBtn?.addEventListener('click', () => {
+        root.classList.toggle('light');
+        localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+      });
+    })();
+
+    /* ── Contact form → WhatsApp ── */
+    document.getElementById('contact-form')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const name   = document.getElementById('cf-name').value.trim();
+      const phone  = document.getElementById('cf-phone').value.trim();
+      const device = document.getElementById('cf-device').value.trim();
+      const msg    = document.getElementById('cf-msg').value.trim();
+      if (!name || !phone) { alert('Por favor preenche o nome e telemóvel.'); return; }
+      const text = `Olá Techlogic! 👋\nNome: ${name}\nTelemóvel: ${phone}${device ? '\nDispositivo: ' + device : ''}${msg ? '\nProblema: ' + msg : ''}`;
+      window.open('https://wa.me/351910277026?text=' + encodeURIComponent(text), '_blank');
+    });
 
     /* ── Mouse-reactive 3D phone ── */
     (function() {
