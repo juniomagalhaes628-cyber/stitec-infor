@@ -102,7 +102,7 @@
     .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .nav-mobile { display: none; flex-direction: column; background: rgba(10,15,30,0.98); border-top: 1px solid var(--border); max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
-    .nav-mobile.open { max-height: 400px; padding: 0.75rem 0; }
+    .nav-mobile.open { max-height: 520px; padding: 0.75rem 0; }
     .nav-mobile a { display: block; padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 500; color: var(--muted); transition: color 0.2s, background 0.2s; }
     .nav-mobile a:hover { color: var(--text); background: rgba(255,255,255,0.04); text-decoration: none; }
     .nav-mobile .mob-cta { margin: 0.5rem 1.5rem; padding: 0.75rem 1rem; background: var(--accent); color: #fff !important; border-radius: 8px; text-align: center; font-weight: 600 !important; display: block; }
@@ -366,12 +366,49 @@
     .form-group input:focus, .form-group textarea:focus { outline: none; border-color: rgba(37,99,235,0.5); box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
     .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); opacity: 0.7; }
 
+    /* ── Estimador de Preço ── */
+    #estimador { background: rgba(26,39,68,0.18); }
+    .estimator { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 2rem 2rem 1.5rem; }
+    .est-step { margin-bottom: 1.75rem; }
+    .est-step-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.85rem; }
+    .est-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .est-btn { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 9px; padding: 0.6rem 1.1rem; font-size: 0.9rem; font-weight: 500; color: var(--text); cursor: pointer; transition: border-color 0.2s, background 0.2s; font-family: 'Inter', sans-serif; line-height: 1.3; }
+    .est-btn:hover { border-color: rgba(37,99,235,0.4); background: rgba(37,99,235,0.08); }
+    .est-btn.active { border-color: var(--accent); background: rgba(37,99,235,0.18); color: #fff; }
+    .est-hidden { display: none !important; }
+    .est-result { background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); border-radius: var(--r); padding: 1.5rem; }
+    .est-price-box { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .est-price-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .est-price-value { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .est-disclaimer { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.1rem; line-height: 1.6; }
+    .est-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .est-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+    /* ── Marcas ── */
+    #marcas { padding: 4rem 0; }
+    .brands-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .brand-chip { background: var(--card); border: 1px solid var(--border); border-radius: 100px; padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: border-color 0.2s, background 0.2s, transform 0.15s; cursor: default; user-select: none; }
+    .brand-chip:hover { border-color: rgba(37,99,235,0.4); background: rgba(37,99,235,0.08); transform: translateY(-2px); }
+
+    /* ── Cookie banner ── */
+    .cookie-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: rgba(15,22,45,0.97); border-top: 1px solid rgba(37,99,235,0.22); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .cookie-bar.visible { transform: translateY(0); }
+    .cookie-text { font-size: 0.875rem; color: var(--muted); line-height: 1.55; max-width: 680px; }
+    .cookie-btns { display: flex; gap: 0.5rem; flex-shrink: 0; }
+    .cookie-btn { border-radius: 8px; padding: 0.45rem 1.1rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; border: none; }
+    .cookie-accept { background: var(--accent); color: #fff; }
+    .cookie-accept:hover { background: var(--accentH); }
+    .cookie-decline { background: transparent; color: var(--muted); border: 1px solid var(--border) !important; }
+    .cookie-decline:hover { color: var(--text); border-color: rgba(255,255,255,0.2) !important; }
+
     @media (max-width: 480px) {
       section { padding: 4rem 0; }
       .btn { font-size: 0.95rem; padding: 0.8rem 1.4rem; }
       .svc-img { height: 140px; }
       .svc-body { padding: 1.2rem 1.3rem 1.3rem; }
       .form-row { grid-template-columns: 1fr; }
+      .est-price-value { font-size: 1.8rem; }
+      .cookie-bar { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
     }
 
     @media (max-width: 640px) {
@@ -402,6 +439,8 @@
       <ul class="nav-links" role="list">
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#estimador">Orçamento</a></li>
+        <li><a href="#marcas">Marcas</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#testemunhos">Avaliações</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -418,6 +457,8 @@
     <nav class="nav-mobile" id="nav-mobile" aria-label="Navegação mobile">
       <a href="#servicos">Serviços</a>
       <a href="#como-funciona">Como funciona</a>
+      <a href="#estimador">Orçamento</a>
+      <a href="#marcas">Marcas</a>
       <a href="#faq">FAQ</a>
       <a href="#testemunhos">Avaliações</a>
       <a href="#contacto">Contacto</a>
@@ -525,6 +566,75 @@
           <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=340&fit=crop&q=75&auto=format" alt="Entrega rápida de encomendas" class="svc-img" loading="lazy" width="600" height="170">
           <div class="svc-body"><div class="svc-icon" aria-hidden="true">📦</div><h3>Entregas Rápidas</h3><p>Envio e receção de encomendas com comodidade e rapidez para os nossos clientes.</p><div class="svc-price">Consultar</div><a href="#contacto" class="svc-link">Pedir orçamento →</a></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="estimador" aria-labelledby="est-title">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-label">Preço estimado</span>
+        <h2 class="s-title" id="est-title">Quanto vai custar?</h2>
+        <p class="s-sub">Seleciona o dispositivo e o problema — obtens uma estimativa instantânea.</p>
+      </div>
+      <div class="estimator fu">
+        <div class="est-step" id="est-step1">
+          <p class="est-step-label">Passo 1 — Qual é a marca?</p>
+          <div class="est-options" role="group" aria-label="Selecionar marca">
+            <button class="est-btn" data-brand="iphone">🍎 iPhone</button>
+            <button class="est-btn" data-brand="samsung">📱 Samsung</button>
+            <button class="est-btn" data-brand="xiaomi">🔴 Xiaomi</button>
+            <button class="est-btn" data-brand="huawei">📟 Huawei</button>
+            <button class="est-btn" data-brand="outro">🔧 Outra marca</button>
+          </div>
+        </div>
+        <div class="est-step est-hidden" id="est-step2">
+          <div class="est-divider"></div>
+          <p class="est-step-label">Passo 2 — Qual é o problema?</p>
+          <div class="est-options" role="group" aria-label="Selecionar problema">
+            <button class="est-btn" data-issue="ecra">💔 Ecrã partido</button>
+            <button class="est-btn" data-issue="bateria">🔋 Bateria</button>
+            <button class="est-btn" data-issue="conector">🔌 Conector / carregador</button>
+            <button class="est-btn" data-issue="camara">📷 Câmara</button>
+            <button class="est-btn" data-issue="outro">🔧 Outro problema</button>
+          </div>
+        </div>
+        <div class="est-result est-hidden" id="est-result" aria-live="polite">
+          <div class="est-divider"></div>
+          <div class="est-price-box">
+            <span class="est-price-label">Estimativa indicativa:</span>
+            <span class="est-price-value" id="est-price-val"></span>
+          </div>
+          <p class="est-disclaimer">Diagnóstico 100% gratuito e sem compromisso. O preço final é confirmado após avaliação do aparelho.</p>
+          <div class="est-actions">
+            <a href="https://wa.me/351910277026" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="est-wa-btn">💬 Confirmar via WhatsApp</a>
+            <button class="btn btn-ghost est-reset">← Recomeçar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marcas" aria-labelledby="marcas-title">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-label">Compatibilidade</span>
+        <h2 class="s-title" id="marcas-title">Marcas que reparamos</h2>
+        <p class="s-sub">Reparamos a maioria dos smartphones do mercado. Não vê a sua marca? Contacte-nos.</p>
+      </div>
+      <div class="brands-row fu">
+        <div class="brand-chip">🍎 Apple</div>
+        <div class="brand-chip">📱 Samsung</div>
+        <div class="brand-chip">🔴 Xiaomi</div>
+        <div class="brand-chip">📟 Huawei</div>
+        <div class="brand-chip">⚡ Motorola</div>
+        <div class="brand-chip">🔷 OnePlus</div>
+        <div class="brand-chip">🎵 Sony</div>
+        <div class="brand-chip">📲 LG</div>
+        <div class="brand-chip">🟢 OPPO</div>
+        <div class="brand-chip">🔵 realme</div>
+        <div class="brand-chip">💜 Nokia</div>
+        <div class="brand-chip">🔶 Honor</div>
       </div>
     </div>
   </section>
@@ -901,6 +1011,96 @@
         phoneWp.style.transform='';
       });
     })();
+
+
+    /* ── Price Estimator ── */
+    (function() {
+      const PRICES = {
+        iphone:  { ecra:'55€–120€', bateria:'45€–75€',  conector:'40€–65€', camara:'50€–90€',  outro:'A consultar' },
+        samsung: { ecra:'45€–100€', bateria:'35€–60€',  conector:'30€–50€', camara:'40€–80€',  outro:'A consultar' },
+        xiaomi:  { ecra:'35€–70€',  bateria:'25€–50€',  conector:'25€–45€', camara:'35€–65€',  outro:'A consultar' },
+        huawei:  { ecra:'35€–70€',  bateria:'25€–50€',  conector:'25€–45€', camara:'35€–65€',  outro:'A consultar' },
+        outro:   { ecra:'A consultar', bateria:'A consultar', conector:'A consultar', camara:'A consultar', outro:'A consultar' }
+      };
+
+      const step1   = document.getElementById('est-step1');
+      const step2   = document.getElementById('est-step2');
+      const result  = document.getElementById('est-result');
+      const priceEl = document.getElementById('est-price-val');
+      const waBtn   = document.getElementById('est-wa-btn');
+
+      if (!step1 || !step2 || !result) return;
+
+      let selBrand = null;
+
+      step1.querySelectorAll('.est-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selBrand = btn.dataset.brand;
+          step1.querySelectorAll('.est-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          result.classList.add('est-hidden');
+          step2.querySelectorAll('.est-btn').forEach(b => b.classList.remove('active'));
+          step2.classList.remove('est-hidden');
+          setTimeout(() => step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        });
+      });
+
+      step2.querySelectorAll('.est-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!selBrand) return;
+          const issue = btn.dataset.issue;
+          const price = PRICES[selBrand]?.[issue] ?? 'A consultar';
+          priceEl.textContent = price;
+          const brandLabel = step1.querySelector('.est-btn.active')?.textContent?.trim() ?? '';
+          const issueLabel = btn.textContent.trim();
+          waBtn.href = 'https://wa.me/351910277026?text=' + encodeURIComponent(
+            `Olá Techlogic! 👋\nDispositivo: ${brandLabel}\nProblema: ${issueLabel}\nEstimativa obtida no site: ${price}\nGostaria de confirmar o orçamento.`
+          );
+          step2.querySelectorAll('.est-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          result.classList.remove('est-hidden');
+          setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        });
+      });
+
+      document.querySelectorAll('.est-reset').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selBrand = null;
+          step1.querySelectorAll('.est-btn').forEach(b => b.classList.remove('active'));
+          step2.querySelectorAll('.est-btn').forEach(b => b.classList.remove('active'));
+          step2.classList.add('est-hidden');
+          result.classList.add('est-hidden');
+          step1.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+    })();
+
+
+    /* ── Cookie Consent Banner ── */
+    (function() {
+      if (localStorage.getItem('cookieConsent')) return;
+      const bar     = document.getElementById('cookie-bar');
+      const accept  = document.getElementById('cookie-accept');
+      const decline = document.getElementById('cookie-decline');
+      if (!bar || !accept || !decline) return;
+      function dismiss(val) {
+        localStorage.setItem('cookieConsent', val);
+        bar.classList.remove('visible');
+        setTimeout(() => { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 450);
+      }
+      setTimeout(() => bar.classList.add('visible'), 1800);
+      accept.addEventListener('click',  () => dismiss('accepted'));
+      decline.addEventListener('click', () => dismiss('declined'));
+    })();
   </script>
+
+  <div class="cookie-bar" id="cookie-bar" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
+    <p class="cookie-text">🍪 Este site utiliza cookies essenciais para melhorar a sua experiência. Ao continuar a navegar, aceita o uso de cookies.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-accept" id="cookie-accept">Aceitar</button>
+      <button class="cookie-btn cookie-decline" id="cookie-decline">Recusar</button>
+    </div>
+  </div>
+
 </body>
 </html>
