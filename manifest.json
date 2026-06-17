@@ -1,0 +1,15 @@
+{
+  "name": "Techlogic — Reparações de Telemóveis",
+  "short_name": "Techlogic",
+  "description": "Reparações rápidas de telemóveis em Oldrões, Penafiel.",
+  "start_url": "/stitec-infor/",
+  "scope": "/stitec-infor/",
+  "display": "standalone",
+  "background_color": "#0A0F1E",
+  "theme_color": "#2563EB",
+  "lang": "pt-PT",
+  "icons": [
+    { "src": "https://via.placeholder.com/192x192/2563EB/ffffff?text=TL", "sizes": "192x192", "type": "image/png" },
+    { "src": "https://via.placeholder.com/512x512/2563EB/ffffff?text=TL", "sizes": "512x512", "type": "image/png" }
+  ]
+}
