@@ -427,6 +427,84 @@
       .btn-primary { text-align: center; justify-content: center; }
       .hero-badge { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
     }
+    /* ── Loja / Shop ── */
+    #loja { background: rgba(26,39,68,0.18); }
+    .shop-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .shop-tab { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px; padding: 0.45rem 1.1rem; font-size: 0.88rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+    .shop-tab:hover { color: var(--text); border-color: rgba(37,99,235,0.35); }
+    .shop-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1.4rem; margin-bottom: 2.5rem; }
+    .product-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+    .product-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+    .product-img-wrap { overflow: hidden; position: relative; }
+    .product-img { width: 100%; height: 180px; object-fit: cover; filter: brightness(0.85) saturate(0.9); transition: filter 0.35s, transform 0.45s; display: block; }
+    .product-card:hover .product-img { filter: brightness(0.95) saturate(1.05); transform: scale(1.04); }
+    .product-badge { position: absolute; top: 0.6rem; left: 0.6rem; background: rgba(37,99,235,0.88); color: #fff; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.18rem 0.55rem; border-radius: 100px; }
+    .product-body { padding: 1.1rem 1.25rem 1.25rem; display: flex; flex-direction: column; flex: 1; gap: 0.3rem; }
+    .product-name { font-size: 0.92rem; font-weight: 600; line-height: 1.35; }
+    .product-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-top: auto; padding-top: 0.6rem; }
+    .product-add { margin-top: 0.75rem; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.25); border-radius: 8px; padding: 0.55rem 1rem; font-size: 0.87rem; font-weight: 600; color: var(--accent); cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+    .product-add:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .product-add.added { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.4); color: #22c55e; }
+    .payment-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; padding: 1.1rem 0; border-top: 1px solid var(--border); }
+    .pay-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .pay-chip { font-size: 0.8rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px; padding: 0.25rem 0.75rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── Cart FAB ── */
+    .cart-fab { position: fixed; bottom: 5.2rem; right: 1.5rem; z-index: 149; width: 52px; height: 52px; background: var(--card); border: 1px solid rgba(37,99,235,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.35); transition: transform 0.2s, box-shadow 0.2s; }
+    .cart-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,99,235,0.3); }
+    .cart-badge { position: absolute; top: -4px; right: -4px; background: var(--accent); color: #fff; font-size: 0.62rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; min-width: 18px; height: 18px; border-radius: 100px; display: flex; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid var(--bg); }
+
+    /* ── Cart Drawer ── */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 490; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(400px,100vw); background: var(--bg); border-left: 1px solid var(--border); z-index: 500; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .cart-title { font-size: 1.05rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+    .cart-close { background: none; border: 1px solid var(--border); border-radius: 7px; font-size: 0.9rem; color: var(--muted); cursor: pointer; padding: 0.3rem 0.55rem; line-height: 1; transition: color 0.2s, border-color 0.2s; }
+    .cart-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .cart-item { display: grid; grid-template-columns: 56px 1fr; gap: 0.75rem; align-items: start; background: var(--card); border-radius: 10px; padding: 0.75rem; border: 1px solid var(--border); }
+    .cart-item-img { width: 56px; height: 56px; object-fit: cover; border-radius: 7px; display: block; }
+    .cart-item-info { min-width: 0; }
+    .cart-item-name { font-size: 0.83rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.25rem; }
+    .cart-item-line { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .cart-item-price { font-size: 0.83rem; color: var(--accent); font-weight: 700; }
+    .cart-item-qty { display: flex; align-items: center; gap: 0.35rem; }
+    .qty-btn { width: 24px; height: 24px; border-radius: 5px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--text); font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; transition: background 0.15s, border-color 0.15s; }
+    .qty-btn:hover { background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.4); }
+    .qty-val { font-size: 0.88rem; font-weight: 600; min-width: 1.2rem; text-align: center; }
+    .qty-rm { background: none; border: none; color: var(--muted); font-size: 0.75rem; cursor: pointer; padding: 0 0.25rem; transition: color 0.15s; }
+    .qty-rm:hover { color: #ef4444; }
+    .cart-footer { padding: 1rem 1.5rem 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.7rem; flex-shrink: 0; }
+    .cart-total-row { display: flex; justify-content: space-between; align-items: center; }
+    .cart-total { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .cart-ship-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); cursor: pointer; user-select: none; }
+    .cart-checkout-btn { width: 100%; justify-content: center; }
+    .cart-clear { font-size: 0.82rem; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; padding: 0.2rem; }
+    .cart-clear:hover { color: #ef4444; }
+    .cart-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--muted); padding: 2rem; text-align: center; }
+    .cart-empty-icon { font-size: 3rem; }
+    .cart-empty-sub { font-size: 0.82rem; }
+
+    /* ── Checkout Modal ── */
+    .checkout-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 600; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .checkout-overlay.open { opacity: 1; pointer-events: auto; }
+    .checkout-modal { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; max-width: 460px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; }
+    .checkout-close { position: absolute; top: 1rem; right: 1rem; background: none; border: 1px solid var(--border); border-radius: 7px; font-size: 0.9rem; color: var(--muted); cursor: pointer; padding: 0.3rem 0.55rem; transition: color 0.2s; }
+    .checkout-close:hover { color: var(--text); }
+    .checkout-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; font-family: 'Space Grotesk', sans-serif; }
+    .checkout-options { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.1rem; }
+    .checkout-opt { display: flex; align-items: center; gap: 0.85rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; text-align: left; transition: border-color 0.2s, background 0.2s; font-family: 'Inter', sans-serif; color: var(--text); width: 100%; cursor: pointer; }
+    .checkout-opt:hover:not(.checkout-static) { border-color: rgba(37,99,235,0.4); background: rgba(37,99,235,0.06); }
+    .checkout-static { cursor: default; }
+    .co-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .co-info { display: flex; flex-direction: column; gap: 0.1rem; }
+    .co-info strong { font-size: 0.9rem; font-weight: 600; }
+    .co-info small { font-size: 0.78rem; color: var(--muted); }
+    .checkout-note { font-size: 0.8rem; color: var(--muted); line-height: 1.6; padding-top: 0.85rem; border-top: 1px solid var(--border); }
+
   </style>
 </head>
 <body>
@@ -444,6 +522,7 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#testemunhos">Avaliações</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#loja">Loja 🛒</a></li>
         <li><a href="tel:910277026" class="nav-cta">📞 910 277 026</a></li>
       </ul>
       <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
@@ -462,6 +541,7 @@
       <a href="#faq">FAQ</a>
       <a href="#testemunhos">Avaliações</a>
       <a href="#contacto">Contacto</a>
+      <a href="#loja">🛒 Loja</a>
       <a href="tel:910277026" class="mob-cta">📞 910 277 026</a>
     </nav>
   </header>
@@ -648,27 +728,31 @@
   </section>
 
   <section id="loja" aria-labelledby="loja-title">
-    <div class="wrap"><div class="loja-card fu">
-      <div class="loja-inner">
-        <div>
-          <div class="loja-badge"><span aria-hidden="true">🛒</span> Em breve</div>
-          <h2 class="loja-title" id="loja-title">Loja <span class="hl">Online</span><br>a caminho</h2>
-          <p class="loja-desc">Brevemente poderá encomendar capas, acessórios e peças de substituição diretamente aqui — com entrega em casa ou levantamento em loja.</p>
-          <div class="loja-actions">
-            <a href="tel:910277026" class="btn btn-primary">📞 Ligar para saber mais</a>
-            <a href="https://www.facebook.com/techlogicc" target="_blank" rel="noopener noreferrer" class="btn-outline">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Seguir no Facebook
-            </a>
-          </div>
-        </div>
-        <div class="loja-visual" aria-hidden="true">
-          <div class="loja-ring"></div><div class="loja-ring loja-ring-2"></div>
-          <div class="loja-orbits"><div class="orbit-item">📱</div><div class="orbit-item">🛡️</div><div class="orbit-item">🔋</div><div class="orbit-item">🎧</div></div>
-          <div class="loja-center">🛒</div>
-        </div>
+    <div class="wrap">
+      <div class="s-head">
+        <span class="s-label">Loja online</span>
+        <h2 class="s-title" id="loja-title">Produtos &amp; Acessórios</h2>
+        <p class="s-sub">Encomenda online e levanta em loja ou recebe em casa. Pagamento fácil e seguro.</p>
       </div>
-    </div></div>
+
+      <div class="shop-tabs" role="tablist" aria-label="Categorias">
+        <button class="shop-tab active" data-cat="all"        role="tab" aria-selected="true">Todos</button>
+        <button class="shop-tab"        data-cat="capas"      role="tab">📱 Capas</button>
+        <button class="shop-tab"        data-cat="hardware"   role="tab">💻 Hardware PC</button>
+        <button class="shop-tab"        data-cat="acessorios" role="tab">🔌 Acessórios</button>
+      </div>
+
+      <div class="shop-grid" id="shop-grid" aria-live="polite"></div>
+
+      <div class="payment-strip fu">
+        <span class="pay-label">Pagamento:</span>
+        <span class="pay-chip">📱 MB WAY</span>
+        <span class="pay-chip">🏦 Transferência</span>
+        <span class="pay-chip">🅿️ PayPal</span>
+        <span class="pay-chip">💶 Dinheiro</span>
+        <span class="pay-chip">🚚 Envio CTT +3.50€</span>
+      </div>
+    </div>
   </section>
 
   <section id="testemunhos" aria-labelledby="test-title">
@@ -815,6 +899,69 @@
       <p class="footer-copy">&copy; Techlogic 2025 &nbsp;&middot;&nbsp; Todos os direitos reservados</p>
     </div>
   </footer>
+
+  <!-- Cart FAB -->
+  <button class="cart-fab" id="cart-fab" aria-label="Ver carrinho">
+    🛒
+    <span class="cart-badge" id="cart-badge" aria-live="polite" hidden>0</span>
+  </button>
+
+  <!-- Cart overlay + drawer -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="cart-header">
+      <h3 class="cart-title">🛒 Carrinho</h3>
+      <button class="cart-close" id="cart-close" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer" id="cart-footer" hidden>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong class="cart-total" id="cart-total"></strong>
+      </div>
+      <label class="cart-ship-label">
+        <input type="checkbox" id="cart-ship"> Envio CTT (+3.50€)
+      </label>
+      <button class="btn btn-primary cart-checkout-btn" id="cart-checkout-btn">Finalizar encomenda →</button>
+      <button class="cart-clear" id="cart-clear">🗑 Limpar carrinho</button>
+    </div>
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>O carrinho está vazio.</p>
+      <p class="cart-empty-sub">Adiciona produtos da loja acima.</p>
+    </div>
+  </aside>
+
+  <!-- Checkout modal -->
+  <div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
+    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+      <button class="checkout-close" id="checkout-close" aria-label="Fechar">✕</button>
+      <h3 class="checkout-title" id="checkout-title">Como queres pagar?</h3>
+      <div class="checkout-options">
+        <button class="checkout-opt" id="pay-whatsapp">
+          <span class="co-icon">💬</span>
+          <span class="co-info"><strong>Encomendar via WhatsApp</strong><small>Enviamos os detalhes por mensagem</small></span>
+        </button>
+        <div class="checkout-opt checkout-static">
+          <span class="co-icon">📱</span>
+          <span class="co-info"><strong>MB WAY</strong><small>Envia para <strong>910 277 026</strong> e indica o teu nome</small></span>
+        </div>
+        <div class="checkout-opt checkout-static">
+          <span class="co-icon">🏦</span>
+          <span class="co-info"><strong>Transferência bancária</strong><small>IBAN: PT50 — contacta-nos para os dados completos</small></span>
+        </div>
+        <button class="checkout-opt" id="pay-paypal">
+          <span class="co-icon">🅿️</span>
+          <span class="co-info"><strong>PayPal</strong><small>Redireccionado para paypal.me/techlogic</small></span>
+        </button>
+        <div class="checkout-opt checkout-static">
+          <span class="co-icon">💶</span>
+          <span class="co-info"><strong>Dinheiro / MB na loja</strong><small>Levanta em Oldrões — 897 EN106, Penafiel</small></span>
+        </div>
+      </div>
+      <p class="checkout-note">📦 Após confirmação do pagamento, processamos a encomenda em 24h.</p>
+    </div>
+  </div>
 
   <a href="https://wa.me/351910277026" target="_blank" rel="noopener noreferrer" class="wha-btn" aria-label="Contactar no WhatsApp">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
@@ -1091,6 +1238,234 @@
       setTimeout(() => bar.classList.add('visible'), 1800);
       accept.addEventListener('click',  () => dismiss('accepted'));
       decline.addEventListener('click', () => dismiss('declined'));
+    })();
+
+    /* ── Shop & Cart ── */
+    (function() {
+      const PRODUCTS = [
+        { id:1,  cat:'capas',      name:'Capa iPhone 15 / 15 Pro',         price:14.99, img:'https://images.unsplash.com/photo-1601972599720-36938d4ecd31?w=400&h=300&fit=crop&q=75', badge:'iPhone' },
+        { id:2,  cat:'capas',      name:'Capa Samsung Galaxy (silicone)',   price:11.99, img:'https://images.unsplash.com/photo-1592813630966-cfa024fc4a0a?w=400&h=300&fit=crop&q=75', badge:'Samsung' },
+        { id:3,  cat:'capas',      name:'Capa Xiaomi / Huawei (silicone)',  price:9.99,  img:'https://images.unsplash.com/photo-1604671368394-2240d0b1bb6c?w=400&h=300&fit=crop&q=75', badge:'Xiaomi/Huawei' },
+        { id:4,  cat:'capas',      name:'Capa com Porta-Cartão',            price:13.99, img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=75', badge:'Universal' },
+        { id:5,  cat:'capas',      name:'Capa Transparente Anti-Choque',    price:6.99,  img:'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=300&fit=crop&q=75', badge:'Universal' },
+        { id:6,  cat:'hardware',   name:'RAM 8GB DDR4 3200MHz',             price:24.99, img:'https://images.unsplash.com/photo-1562976540-1502c2145651?w=400&h=300&fit=crop&q=75', badge:'PC' },
+        { id:7,  cat:'hardware',   name:'SSD 256GB SATA III',               price:34.99, img:'https://images.unsplash.com/photo-1600348759200-d0f4daf1c0c0?w=400&h=300&fit=crop&q=75', badge:'PC' },
+        { id:8,  cat:'hardware',   name:'SSD 512GB SATA III',               price:54.99, img:'https://images.unsplash.com/photo-1600348759200-d0f4daf1c0c0?w=400&h=300&fit=crop&q=75', badge:'PC' },
+        { id:9,  cat:'hardware',   name:'SSD 1TB NVMe M.2',                 price:79.99, img:'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400&h=300&fit=crop&q=75', badge:'PC' },
+        { id:10, cat:'hardware',   name:'Pasta Térmica (10g)',               price:4.99,  img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop&q=75', badge:'PC' },
+        { id:11, cat:'acessorios', name:'Cabo USB-C 1m (trançado)',          price:5.99,  img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&q=75', badge:'Cabo' },
+        { id:12, cat:'acessorios', name:'Cabo Lightning 1m (trançado)',      price:6.99,  img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&q=75', badge:'Cabo' },
+        { id:13, cat:'acessorios', name:'Carregador 20W USB-C',              price:12.99, img:'https://images.unsplash.com/photo-1585338816079-6e52f9697f7d?w=400&h=300&fit=crop&q=75', badge:'Carregador' },
+        { id:14, cat:'acessorios', name:'Película Vidro Temperado',          price:4.99,  img:'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400&h=300&fit=crop&q=75', badge:'Proteção' },
+        { id:15, cat:'acessorios', name:'Power Bank 10000mAh',               price:19.99, img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=300&fit=crop&q=75', badge:'Bateria' },
+        { id:16, cat:'acessorios', name:'Auriculares Bluetooth',             price:24.99, img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&q=75', badge:'Áudio' },
+      ];
+      const SHIP_FEE = 3.50;
+      const WA_NUM   = '351910277026';
+      const STORAGE_KEY = 'techlogic_cart';
+
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) {}
+
+      function saveCart() { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); }
+
+      function getTotal(includeShip) {
+        const sub = cart.reduce((s, c) => {
+          const p = PRODUCTS.find(x => x.id === c.id);
+          return s + (p ? p.price * c.qty : 0);
+        }, 0);
+        return sub + (includeShip ? SHIP_FEE : 0);
+      }
+
+      function updateBadge() {
+        const total = cart.reduce((s, c) => s + c.qty, 0);
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        badge.textContent = total;
+        badge.hidden = total === 0;
+      }
+
+      function renderProducts(cat) {
+        const grid = document.getElementById('shop-grid');
+        if (!grid) return;
+        const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === cat);
+        grid.innerHTML = list.map(p => {
+          const inCart = cart.some(c => c.id === p.id);
+          return `<div class="product-card fu vis">
+            <div class="product-img-wrap">
+              <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy" width="400" height="180">
+              <span class="product-badge">${p.badge}</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">${p.name}</div>
+              <div class="product-price">${p.price.toFixed(2).replace('.',',')}€</div>
+              <button class="product-add${inCart ? ' added' : ''}" data-id="${p.id}">
+                ${inCart ? '✓ Adicionado' : '+ Adicionar ao carrinho'}
+              </button>
+            </div>
+          </div>`;
+        }).join('');
+        grid.querySelectorAll('.product-add').forEach(btn => {
+          btn.addEventListener('click', () => addToCart(Number(btn.dataset.id)));
+        });
+      }
+
+      function renderCartItems() {
+        const container = document.getElementById('cart-items');
+        const footer    = document.getElementById('cart-footer');
+        const emptyEl   = document.getElementById('cart-empty');
+        const totalEl   = document.getElementById('cart-total');
+        const shipCb    = document.getElementById('cart-ship');
+        if (!container) return;
+        const isEmpty = cart.length === 0;
+        if (emptyEl) emptyEl.hidden = !isEmpty;
+        if (footer)  footer.hidden  = isEmpty;
+        container.innerHTML = cart.map(c => {
+          const p = PRODUCTS.find(x => x.id === c.id);
+          if (!p) return '';
+          return `<div class="cart-item" data-id="${p.id}">
+            <img src="${p.img}" alt="${p.name}" class="cart-item-img" loading="lazy">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${p.name}</div>
+              <div class="cart-item-line">
+                <span class="cart-item-price">${(p.price * c.qty).toFixed(2).replace('.',',')}€</span>
+                <div class="cart-item-qty">
+                  <button class="qty-btn" data-action="dec" data-id="${p.id}" aria-label="Diminuir">−</button>
+                  <span class="qty-val">${c.qty}</span>
+                  <button class="qty-btn" data-action="inc" data-id="${p.id}" aria-label="Aumentar">+</button>
+                  <button class="qty-rm" data-action="rm" data-id="${p.id}" aria-label="Remover">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }).join('');
+        container.querySelectorAll('.qty-btn, .qty-rm').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = Number(btn.dataset.id);
+            if (btn.dataset.action === 'rm')  removeFromCart(id);
+            else updateQty(id, btn.dataset.action === 'inc' ? 1 : -1);
+          });
+        });
+        if (totalEl && shipCb) {
+          totalEl.textContent = getTotal(shipCb.checked).toFixed(2).replace('.',',') + '€';
+        }
+      }
+
+      function addToCart(id) {
+        const product = PRODUCTS.find(p => p.id === id);
+        if (!product) return;
+        const existing = cart.find(c => c.id === id);
+        if (existing) existing.qty++;
+        else cart.push({ id, qty: 1 });
+        saveCart(); updateBadge(); renderCartItems();
+        const btn = document.querySelector(`.product-add[data-id="${id}"]`);
+        if (btn) { btn.classList.add('added'); btn.textContent = '✓ Adicionado'; }
+        openCart();
+      }
+
+      function removeFromCart(id) {
+        cart = cart.filter(c => c.id !== id);
+        saveCart(); updateBadge(); renderCartItems();
+        const btn = document.querySelector(`.product-add[data-id="${id}"]`);
+        if (btn) { btn.classList.remove('added'); btn.textContent = '+ Adicionar ao carrinho'; }
+      }
+
+      function updateQty(id, delta) {
+        const item = cart.find(c => c.id === id);
+        if (!item) return;
+        item.qty = Math.max(0, item.qty + delta);
+        if (item.qty === 0) return removeFromCart(id);
+        saveCart(); updateBadge(); renderCartItems();
+      }
+
+      function clearCart() {
+        cart = []; saveCart(); updateBadge(); renderCartItems();
+        document.querySelectorAll('.product-add').forEach(btn => {
+          btn.classList.remove('added'); btn.textContent = '+ Adicionar ao carrinho';
+        });
+      }
+
+      function openCart() {
+        const drawer  = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        if (!drawer) return;
+        renderCartItems();
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCart() {
+        const drawer  = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        if (!drawer) return;
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      function openCheckout() {
+        const modal = document.getElementById('checkout-overlay');
+        if (cart.length === 0 || !modal) return;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeCheckout() {
+        const modal = document.getElementById('checkout-overlay');
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function buildWAMessage() {
+        const ship = document.getElementById('cart-ship')?.checked;
+        const lines = cart.map(c => {
+          const p = PRODUCTS.find(x => x.id === c.id);
+          return p ? `• ${p.name} (x${c.qty}) — ${(p.price * c.qty).toFixed(2)}€` : '';
+        }).filter(Boolean).join('\n');
+        return `Olá Techlogic! 🛒\n\nGostaria de encomendar:\n${lines}${ship ? '\n• Envio CTT — 3.50€' : ''}\n\nTotal: ${getTotal(ship).toFixed(2)}€\n\nMétodo de pagamento: (indicar)`;
+      }
+
+      /* ── Event listeners ── */
+      document.querySelectorAll('.shop-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.shop-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          renderProducts(tab.dataset.cat);
+        });
+      });
+
+      document.getElementById('cart-fab')?.addEventListener('click', openCart);
+      document.getElementById('cart-close')?.addEventListener('click', closeCart);
+      document.getElementById('cart-overlay')?.addEventListener('click', closeCart);
+      document.getElementById('cart-checkout-btn')?.addEventListener('click', () => { closeCart(); openCheckout(); });
+      document.getElementById('cart-clear')?.addEventListener('click', () => { if (confirm('Limpar o carrinho?')) clearCart(); });
+      document.getElementById('cart-ship')?.addEventListener('change', renderCartItems);
+
+      document.getElementById('pay-whatsapp')?.addEventListener('click', () => {
+        window.open('https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(buildWAMessage()), '_blank');
+        clearCart(); closeCheckout();
+      });
+      document.getElementById('pay-paypal')?.addEventListener('click', () => {
+        const total = getTotal(document.getElementById('cart-ship')?.checked).toFixed(2);
+        window.open('https://paypal.me/techlogic/' + total + 'EUR', '_blank');
+        clearCart(); closeCheckout();
+      });
+      document.getElementById('checkout-close')?.addEventListener('click', closeCheckout);
+      document.getElementById('checkout-overlay')?.addEventListener('click', e => {
+        if (e.target === e.currentTarget) closeCheckout();
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { closeCart(); closeCheckout(); }
+      });
+
+      renderProducts('all');
+      updateBadge();
     })();
   </script>
 
