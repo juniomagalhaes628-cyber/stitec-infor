@@ -222,6 +222,15 @@
     .recently-body { padding:0.6rem 0.75rem; }
     .recently-name { font-size:0.76rem; font-weight:600; line-height:1.3; color:var(--text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
     .recently-price { font-size:0.82rem; font-weight:700; color:var(--accent); margin-top:0.25rem; }
+    /* ── 3D card entrance + tilt ── */
+    @keyframes cardReveal { from { opacity:0; transform:translateY(28px) rotateX(12deg) scale(0.97); } to { opacity:1; transform:none; } }
+    .product-card.card-revealed { animation:cardReveal 0.5s cubic-bezier(0.23,1,0.32,1) both; }
+    .shop-grid { perspective:1400px; }
+    /* ── Store hero glow orb ── */
+    @keyframes orbDrift { 0%,100% { transform:translateX(-50%) translateY(0) scale(1); } 50% { transform:translateX(-50%) translateY(-18px) scale(1.07); } }
+    .store-hero { position:relative; overflow:hidden; }
+    .store-hero-orb { position:absolute; width:520px; height:280px; background:radial-gradient(ellipse,rgba(37,99,235,0.13) 0%,transparent 70%); border-radius:50%; top:-40px; left:50%; transform:translateX(-50%); pointer-events:none; animation:orbDrift 10s ease-in-out infinite; }
+    @media (prefers-reduced-motion:reduce) { .product-card.card-revealed { animation:none; opacity:1; } .store-hero-orb { animation:none; } }
   </style>
 </head>
 <body>
@@ -244,6 +253,7 @@
 
   <main>
     <div class="store-hero">
+      <div class="store-hero-orb" aria-hidden="true"></div>
       <div class="wrap">
         <div class="store-hero-label">🛒 Loja online</div>
         <h1>Produtos &amp; <span>Acessórios</span></h1>
@@ -621,6 +631,22 @@
             location.href = 'produto.html?id=' + card.dataset.id;
           });
         });
+        if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+          const io3d = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('card-revealed'); io3d.unobserve(e.target); } });
+          }, {threshold:0.06});
+          grid.querySelectorAll('.product-card').forEach((card, i) => {
+            card.style.animationDelay = (i * 0.04) + 's';
+            io3d.observe(card);
+            card.addEventListener('mousemove', ev => {
+              const r = card.getBoundingClientRect();
+              const x = (ev.clientX - r.left) / r.width - 0.5;
+              const y = (ev.clientY - r.top)  / r.height - 0.5;
+              card.style.transform = `perspective(900px) rotateY(${x*10}deg) rotateX(${-y*8}deg) translateY(-6px)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+          });
+        }
       }
 
       function renderCartItems() {

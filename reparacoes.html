@@ -126,6 +126,15 @@
     .cookie-accept { background:var(--accent); color:#fff; }
     .cookie-decline { background:rgba(255,255,255,0.08); color:var(--muted); }
     @media (max-width:640px) { .cookie-bar { flex-direction:column; align-items:flex-start; gap:0.75rem; } }
+    /* ── 3D step cards + hero orb ── */
+    @keyframes stepReveal { from { opacity:0; transform:translateY(20px) rotateX(8deg); } to { opacity:1; transform:none; } }
+    .step-card.step-revealed { animation:stepReveal 0.5s cubic-bezier(0.23,1,0.32,1) both; }
+    .step-card { transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s; }
+    .step-card:hover { border-color:rgba(37,99,235,0.35); box-shadow:0 8px 32px rgba(0,0,0,0.25); }
+    @keyframes heroOrb { 0%,100% { transform:translateX(-50%) scale(1); } 50% { transform:translateX(-50%) scale(1.1) translateY(-12px); } }
+    .page-hero { position:relative; overflow:hidden; }
+    .hero-glow-orb { position:absolute; width:480px; height:260px; background:radial-gradient(ellipse,rgba(37,99,235,0.12) 0%,transparent 70%); border-radius:50%; top:-30px; left:50%; transform:translateX(-50%); pointer-events:none; animation:heroOrb 10s ease-in-out infinite; }
+    @media (prefers-reduced-motion:reduce) { .step-card.step-revealed { animation:none; opacity:1; } .hero-glow-orb { animation:none; } }
   </style>
 </head>
 <body>
@@ -146,6 +155,7 @@
 
   <main>
     <div class="page-hero">
+      <div class="hero-glow-orb" aria-hidden="true"></div>
       <div class="wrap">
         <div class="hero-label">🔧 Reparações</div>
         <h1>Reparamos o teu <span>telemóvel</span></h1>
@@ -403,6 +413,22 @@
       accept.addEventListener('click', () => dismiss('accepted'));
       decline.addEventListener('click', () => dismiss('declined'));
     })();
+    if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('step-revealed'); io.unobserve(e.target); } });
+      }, {threshold:0.1});
+      document.querySelectorAll('.step-card').forEach((card, i) => {
+        card.style.animationDelay = (i * 0.1) + 's';
+        io.observe(card);
+        card.addEventListener('mousemove', ev => {
+          const r = card.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width - 0.5;
+          const y = (ev.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `perspective(700px) rotateY(${x*9}deg) rotateX(${-y*7}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      });
+    }
     document.getElementById('quote-btn').addEventListener('click', () => {
       const name   = document.getElementById('q-name').value.trim();
       const phone  = document.getElementById('q-phone').value.trim();
