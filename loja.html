@@ -6,6 +6,12 @@
   <title>Loja Online — Techlogic Oldrões</title>
   <meta name="description" content="Loja online da Techlogic. Capas para telemóvel, hardware PC, acessórios e mais. Encomenda online com entrega CTT ou levantamento em loja em Oldrões, Penafiel.">
   <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Loja Techlogic — Capas, Hardware e Acessórios em Oldrões">
+  <meta property="og:description" content="32 produtos: capas iPhone/Samsung, hardware PC, cabos, periféricos. Entrega CTT ou levantamento em Oldrões, Penafiel.">
+  <meta property="og:image" content="https://images.pexels.com/photos/374117/pexels-photo-374117.jpeg">
+  <meta property="og:url" content="https://juniomagalhaes628-cyber.github.io/stitec-infor/loja.html">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -178,6 +184,44 @@
     @media (max-width: 360px) {
       .shop-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── Light mode ── */
+    html.light { --bg:#F0F4FF; --card:#FFFFFF; --text:#0D1424; --muted:#4B5A7A; --border:rgba(0,0,0,0.1); }
+    html.light .site-header { background:rgba(240,244,255,0.92); }
+    html.light #shop-search { background:#fff; }
+    html.light #shop-sort { background:#fff; }
+    .icon-sun { display:none; }
+    html.light .icon-moon { display:none; }
+    html.light .icon-sun { display:block; }
+    .theme-toggle { background:none; border:1px solid var(--border); border-radius:8px; width:36px; height:36px; cursor:pointer; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:color 0.2s,border-color 0.2s; flex-shrink:0; }
+    .theme-toggle:hover { color:var(--accent); border-color:rgba(37,99,235,0.4); }
+    .wha-btn { position:fixed; bottom:1.75rem; left:1.75rem; z-index:149; width:54px; height:54px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,0.45); animation:whaPulse 2.5s ease-in-out infinite; transition:transform 0.2s,box-shadow 0.2s; text-decoration:none; }
+    .wha-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,0.6); text-decoration:none; }
+    @keyframes whaPulse { 0%,100% { box-shadow:0 4px 20px rgba(37,211,102,0.45),0 0 0 0 rgba(37,211,102,0); } 50% { box-shadow:0 4px 20px rgba(37,211,102,0.45),0 0 0 8px rgba(37,211,102,0.12); } }
+    @media (prefers-reduced-motion:reduce) { .wha-btn { animation:none; } }
+    .cookie-bar { position:fixed; bottom:0; left:0; right:0; z-index:9999; background:rgba(15,22,45,0.97); border-top:1px solid rgba(37,99,235,0.22); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; justify-content:space-between; transform:translateY(100%); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+    .cookie-bar.visible { transform:translateY(0); }
+    .cookie-text { font-size:0.875rem; color:var(--muted); line-height:1.55; max-width:680px; }
+    .cookie-btns { display:flex; gap:0.5rem; flex-shrink:0; }
+    .cookie-btn { border:none; border-radius:8px; padding:0.45rem 1rem; font-size:0.82rem; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
+    .cookie-accept { background:var(--accent); color:#fff; }
+    .cookie-decline { background:rgba(255,255,255,0.08); color:var(--muted); }
+    @media (max-width:640px) { .cookie-bar { flex-direction:column; align-items:flex-start; gap:0.75rem; } }
+    .price-filter-wrap { display:flex; flex-direction:column; gap:3px; min-width:130px; }
+    .price-filter-label { font-size:0.78rem; color:var(--muted); white-space:nowrap; }
+    .price-slider { accent-color:var(--accent); width:100%; cursor:pointer; }
+    .product-stars { display:flex; align-items:center; gap:2px; margin-top:0.3rem; font-size:0.7rem; }
+    .stars-filled { color:#F59E0B; letter-spacing:1px; }
+    .stars-count { color:var(--muted); font-size:0.68rem; margin-left:3px; }
+    .recently-section { padding:1.5rem 0 2rem; border-top:1px solid var(--border); }
+    .recently-title { font-size:1rem; font-weight:700; margin-bottom:1rem; }
+    .recently-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1rem; }
+    .recently-card { background:var(--card); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; cursor:pointer; transition:border-color 0.2s,transform 0.2s; text-decoration:none; display:block; }
+    .recently-card:hover { border-color:rgba(37,99,235,0.4); transform:translateY(-2px); }
+    .recently-img { width:100%; height:100px; object-fit:cover; display:block; }
+    .recently-body { padding:0.6rem 0.75rem; }
+    .recently-name { font-size:0.76rem; font-weight:600; line-height:1.3; color:var(--text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .recently-price { font-size:0.82rem; font-weight:700; color:var(--accent); margin-top:0.25rem; }
   </style>
 </head>
 <body>
