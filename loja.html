@@ -169,7 +169,7 @@
     <section style="padding: 0 0 2rem;">
       <div class="wrap">
         <div class="shop-tabs" role="tablist" aria-label="Categorias">
-          <button class="shop-tab active" data-cat="all"          role="tab" aria-selected="true">Todos (24)</button>
+          <button class="shop-tab active" data-cat="all"          role="tab" aria-selected="true">Todos (28)</button>
           <button class="shop-tab"        data-cat="capas"        role="tab">📱 Capas</button>
           <button class="shop-tab"        data-cat="hardware"     role="tab">💻 Hardware PC</button>
           <button class="shop-tab"        data-cat="acessorios"   role="tab">🔌 Acessórios</button>
@@ -268,10 +268,10 @@
     (function() {
       const PRODUCTS = [
         /* ── Capas ── */
-        { id:1,  cat:'capas', name:'Capa iPhone 15 / 15 Pro', price:14.99, badge:'iPhone',
-          img:'https://images.pexels.com/photos/374117/pexels-photo-374117.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-          desc:'Capa resistente para iPhone 15 e 15 Pro com proteção reforçada nos cantos e design elegante que valoriza o teu telemóvel.',
-          features:['Compatível com iPhone 15 e 15 Pro','Proteção anti-impacto nos cantos','Material TPU premium','Acesso total a todos os botões e portas'] },
+        { id:1,  cat:'capas', name:'Capa iPhone 15 / 15 Pro / 15 Pro Max', price:14.99, badge:'iPhone 15',
+          img:'https://images.pexels.com/photos/18423742/pexels-photo-18423742.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+          desc:'Capa resistente para iPhone 15, 15 Pro e 15 Pro Max com proteção reforçada nos cantos e design elegante que valoriza o teu telemóvel.',
+          features:['Compatível com iPhone 15, 15 Pro e 15 Pro Max','Proteção anti-impacto nos cantos','Material TPU premium','Acesso total a todos os botões e portas'] },
         { id:2,  cat:'capas', name:'Capa Samsung Galaxy S24 (silicone)', price:11.99, badge:'Samsung',
           img:'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=300&fit=crop&q=80',
           desc:'Capa de silicone macio para Samsung Galaxy S24 que protege sem adicionar volume. Toque suave e antiderrapante.',
@@ -289,9 +289,26 @@
           desc:'Capa transparente de policarbonato rígido que protege o teu telemóvel sem esconder o seu design original.',
           features:['Policarbonato transparente resistente','Anti-amarelecimento','Proteção contra quedas até 1 m','Compatível com a maioria dos smartphones'] },
 
+        { id:25, cat:'capas', name:'Capa iPhone 14 / 14 Pro / 14 Plus', price:12.99, badge:'iPhone 14',
+          img:'https://images.pexels.com/photos/14238851/pexels-photo-14238851.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+          desc:'Capa para iPhone 14, 14 Pro e 14 Plus com proteção completa e design slim. Disponível em várias cores.',
+          features:['Compatível com iPhone 14, 14 Pro e 14 Plus','Material TPU flexível de alta qualidade','Proteção anti-impacto','Acesso total a câmara e botões'] },
+        { id:26, cat:'capas', name:'Capa iPhone 13 / 13 Pro / 13 mini', price:11.99, badge:'iPhone 13',
+          img:'https://images.pexels.com/photos/1670768/pexels-photo-1670768.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+          desc:'Capa para iPhone 13, 13 Pro e 13 mini — proteção robusta com acabamento premium. Vários modelos disponíveis.',
+          features:['Compatível com iPhone 13, 13 Pro e 13 mini','Proteção anti-choque','Acabamento premium','Acesso total a todos os botões'] },
+        { id:27, cat:'capas', name:'Capa iPhone 12 / 12 Pro / 12 mini', price:10.99, badge:'iPhone 12',
+          img:'https://images.pexels.com/photos/374117/pexels-photo-374117.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+          desc:'Capa para iPhone 12, 12 Pro e 12 mini. Proteção eficaz com design elegante e leveza excepcional.',
+          features:['Compatível com iPhone 12, 12 Pro e 12 mini','Material TPU resistente','Proteção lateral e traseira completa','Compatível com MagSafe'] },
+        { id:28, cat:'capas', name:'Capa iPhone 11 / 11 Pro', price:9.99, badge:'iPhone 11',
+          img:'https://images.pexels.com/photos/7742552/pexels-photo-7742552.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+          desc:'Capa para iPhone 11 e 11 Pro — proteção sólida ao melhor preço para modelos anteriores em excelente estado.',
+          features:['Compatível com iPhone 11 e 11 Pro','TPU slim de qualidade','Proteção anti-impacto','Acesso total a câmara e conectores'] },
+
         /* ── Hardware PC ── */
         { id:6,  cat:'hardware', name:'RAM 8 GB DDR4 3200 MHz', price:24.99, badge:'PC',
-          img:'https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&h=300&fit=crop&q=80',
+          img:'https://images.pexels.com/photos/23941163/pexels-photo-23941163.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
           desc:'Módulo de memória RAM DDR4 de 8 GB a 3200 MHz para upgrade de desktop. Aumenta a velocidade do teu PC imediatamente.',
           features:['8 GB DDR4 3200 MHz','Tensão 1.35 V','Compatível com Intel e AMD','Latência CL22'] },
         { id:7,  cat:'hardware', name:'SSD 256 GB SATA III (2.5")', price:34.99, badge:'PC',
