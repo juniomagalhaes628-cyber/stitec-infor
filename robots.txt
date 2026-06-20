@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://juniomagalhaes628-cyber.github.io/stitec-infor/sitemap.xml

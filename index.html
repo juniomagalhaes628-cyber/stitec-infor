@@ -520,7 +520,7 @@
 
   <header id="nav" role="banner">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo" style="line-height:0;"><img src="logo.png" alt="Techlogic" style="height:40px;width:40px;object-fit:contain;display:block;"></a>
+      <a href="#hero" class="nav-logo" style="line-height:0;"><img src="logo.webp" alt="Techlogic" style="height:40px;width:40px;object-fit:contain;display:block;"></a>
       <ul class="nav-links" role="list">
         <li><a href="#servicos">Serviços</a></li>
         <li class="nav-sec"><a href="#como-funciona">Como funciona</a></li>
@@ -941,6 +941,21 @@
     navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       navMobile.classList.remove('open'); navToggle.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false');
     }));
+
+    (function() {
+      let sx = null;
+      document.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', e => {
+        if (sx == null) return;
+        const dx = e.changedTouches[0].clientX - sx;
+        if (sx < 30 && dx > 60) {
+          navMobile.classList.add('open'); navToggle.classList.add('open'); navToggle.setAttribute('aria-expanded','true');
+        } else if (navMobile.classList.contains('open') && dx < -60) {
+          navMobile.classList.remove('open'); navToggle.classList.remove('open'); navToggle.setAttribute('aria-expanded','false');
+        }
+        sx = null;
+      }, {passive:true});
+    })();
 
     const ioFade = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); ioFade.unobserve(e.target); } });

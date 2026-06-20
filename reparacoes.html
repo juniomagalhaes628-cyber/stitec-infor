@@ -135,13 +135,17 @@
     .page-hero { position:relative; overflow:hidden; }
     .hero-glow-orb { position:absolute; width:480px; height:260px; background:radial-gradient(ellipse,rgba(37,99,235,0.12) 0%,transparent 70%); border-radius:50%; top:-30px; left:50%; transform:translateX(-50%); pointer-events:none; animation:heroOrb 10s ease-in-out infinite; }
     @media (prefers-reduced-motion:reduce) { .step-card.step-revealed { animation:none; opacity:1; } .hero-glow-orb { animation:none; } }
+    /* ── Back to top ── */
+    .back-top { position:fixed; bottom:5rem; right:1.5rem; z-index:148; width:40px; height:40px; background:var(--card); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--muted); cursor:pointer; opacity:0; transform:translateY(8px); transition:opacity 0.3s,transform 0.3s,border-color 0.2s,color 0.2s; pointer-events:none; }
+    .back-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .back-top:hover { border-color:var(--accent); color:var(--accent); }
   </style>
 </head>
 <body>
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" style="line-height:0;"><img src="logo.png" alt="Techlogic" class="header-logo-img"></a>
+      <a href="index.html" style="line-height:0;"><img src="logo.webp" alt="Techlogic" class="header-logo-img"></a>
       <div class="header-nav">
         <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -451,6 +455,14 @@
 
       window.open('https://wa.me/351910277026?text=' + encodeURIComponent(msg), '_blank');
     });
+
+    (function() {
+      const btn = document.getElementById('back-top');
+      if (!btn) return;
+      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 320), {passive:true});
+      btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+    })();
   </script>
+  <button class="back-top" id="back-top" aria-label="Voltar ao topo">↑</button>
 </body>
 </html>

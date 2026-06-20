@@ -231,13 +231,28 @@
     .store-hero { position:relative; overflow:hidden; }
     .store-hero-orb { position:absolute; width:520px; height:280px; background:radial-gradient(ellipse,rgba(37,99,235,0.13) 0%,transparent 70%); border-radius:50%; top:-40px; left:50%; transform:translateX(-50%); pointer-events:none; animation:orbDrift 10s ease-in-out infinite; }
     @media (prefers-reduced-motion:reduce) { .product-card.card-revealed { animation:none; opacity:1; } .store-hero-orb { animation:none; } }
-  </style>
+    /* ── Skeleton loading ── */
+    @keyframes shimmer { from { background-position:-400px 0; } to { background-position:400px 0; } }
+    .skeleton-card { background:var(--card); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+    .skeleton-img { height:200px; background:linear-gradient(90deg,var(--card) 25%,rgba(255,255,255,0.05) 50%,var(--card) 75%); background-size:400px 100%; animation:shimmer 1.4s ease-in-out infinite; }
+    .skeleton-body { padding:1.1rem 1.25rem 1.35rem; display:flex; flex-direction:column; gap:0.6rem; }
+    .skeleton-line { border-radius:6px; background:linear-gradient(90deg,var(--card) 25%,rgba(255,255,255,0.05) 50%,var(--card) 75%); background-size:400px 100%; animation:shimmer 1.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion:reduce) { .skeleton-img,.skeleton-line { animation:none; } }
+    /* ── Card qty control ── */
+    .card-qty-ctrl { display:flex; align-items:center; justify-content:center; gap:0.65rem; margin-top:0.8rem; background:rgba(37,99,235,0.07); border:1px solid rgba(37,99,235,0.22); border-radius:8px; padding:0.45rem; }
+    .card-qty-btn { width:28px; height:28px; border-radius:6px; border:1px solid rgba(37,99,235,0.3); background:rgba(37,99,235,0.1); color:var(--accent); font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.15s,border-color 0.15s; line-height:1; }
+    .card-qty-btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .card-qty-val { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--text); min-width:1.5rem; text-align:center; }
+    /* ── Back to top ── */
+    .back-top { position:fixed; bottom:5rem; right:1.75rem; z-index:148; width:40px; height:40px; background:var(--card); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--muted); cursor:pointer; opacity:0; transform:translateY(8px); transition:opacity 0.3s,transform 0.3s,border-color 0.2s,color 0.2s; pointer-events:none; }
+    .back-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .back-top:hover { border-color:var(--accent); color:var(--accent); }
 </head>
 <body>
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" style="line-height:0;"><img src="logo.png" alt="Techlogic" class="header-logo-img"></a>
+      <a href="index.html" style="line-height:0;"><img src="logo.webp" alt="Techlogic" class="header-logo-img"></a>
       <div style="display:flex;align-items:center;gap:0.65rem;">
         <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -291,7 +306,16 @@
           <button class="shop-tab"        data-cat="rede"         role="tab">🌐 Rede</button>
         </div>
 
-        <div class="shop-grid" id="shop-grid" aria-live="polite"></div>
+        <div class="shop-grid" id="shop-grid" aria-live="polite">
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:80%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:40%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:90%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:35%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:75%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:45%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:85%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:38%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:70%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:42%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:80%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:36%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:88%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:40%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:14px;width:78%"></div><div class="skeleton-line" style="height:11px;width:55%"></div><div class="skeleton-line" style="height:22px;width:43%;margin-top:0.4rem"></div><div class="skeleton-line" style="height:36px;border-radius:8px;margin-top:0.5rem"></div></div></div>
+        </div>
 
         <div id="recently-section" class="recently-section" style="display:none;">
           <h2 class="recently-title">🕓 Recentemente vistos</h2>
@@ -613,9 +637,13 @@
               ${starsHtml}
               <div class="product-price">${p.price.toFixed(2).replace('.',',')}€</div>
               ${stockHtml}
-              <button class="product-add${inCart ? ' added' : ''}" data-id="${p.id}"${isEsgotado ? ' disabled' : ''}>
-                ${isEsgotado ? '✕ Esgotado' : inCart ? '✓ Adicionado' : '+ Adicionar ao carrinho'}
-              </button>
+              ${inCart ? `<div class="card-qty-ctrl" data-id="${p.id}">
+                <button class="card-qty-btn" data-action="dec" data-id="${p.id}" aria-label="Diminuir">−</button>
+                <span class="card-qty-val">${cart.find(c=>c.id===p.id)?.qty||1}</span>
+                <button class="card-qty-btn" data-action="inc" data-id="${p.id}" aria-label="Aumentar">+</button>
+              </div>` : `<button class="product-add" data-id="${p.id}"${isEsgotado ? ' disabled' : ''}>
+                ${isEsgotado ? '✕ Esgotado' : '+ Adicionar ao carrinho'}
+              </button>`}
               <div class="product-view-hint">Ver produto →</div>
             </div>
           </div>`;
@@ -624,6 +652,14 @@
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
             addToCart(Number(btn.dataset.id));
+          });
+        });
+        grid.querySelectorAll('.card-qty-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = Number(btn.dataset.id);
+            if (btn.dataset.action === 'inc') updateQty(id, 1);
+            else updateQty(id, -1);
           });
         });
         grid.querySelectorAll('.product-card').forEach(card => {
@@ -862,7 +898,33 @@
       accept.addEventListener('click', () => dismiss('accepted'));
       decline.addEventListener('click', () => dismiss('declined'));
     })();
+
+    // Back to top
+    (function() {
+      const btn = document.getElementById('back-top');
+      if (!btn) return;
+      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 320), {passive:true});
+      btn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+    })();
+
+    // Cart drawer swipe to close
+    (function() {
+      const drawer = document.getElementById('cart-drawer');
+      if (!drawer) return;
+      let sx;
+      drawer.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+      drawer.addEventListener('touchend', e => {
+        if (sx != null && e.changedTouches[0].clientX - sx > 60) {
+          document.getElementById('cart-close')?.click();
+        }
+        sx = null;
+      }, {passive:true});
+    })();
   </script>
+
+  <button class="back-top" id="back-top" aria-label="Voltar ao topo">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
 </body>
 </html>

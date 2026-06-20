@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Página não encontrada · Techlogic</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#0A0F1E; --card:#1A2744; --accent:#2563EB; --text:#E8EDF5; --muted:#6B7A99; --border:rgba(255,255,255,0.07); }
+    html { font-size:16px; overflow-x:hidden; }
+    body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem; text-align:center; }
+    @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-12px); } }
+    @keyframes glow { 0%,100% { opacity:0.5; } 50% { opacity:1; } }
+    .orb { position:fixed; width:500px; height:300px; background:radial-gradient(ellipse,rgba(37,99,235,0.12) 0%,transparent 70%); border-radius:50%; top:10%; left:50%; transform:translateX(-50%); pointer-events:none; animation:glow 6s ease-in-out infinite; }
+    .icon-wrap { font-size:5rem; animation:float 4s ease-in-out infinite; margin-bottom:1.5rem; line-height:1; }
+    .code { font-family:'Space Grotesk',sans-serif; font-size:clamp(5rem,18vw,9rem); font-weight:700; color:rgba(37,99,235,0.18); line-height:1; letter-spacing:-0.05em; margin-bottom:-1rem; }
+    h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.4rem,4vw,2rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:0.6rem; }
+    p { color:var(--muted); font-size:1rem; max-width:380px; line-height:1.7; margin-bottom:2.5rem; }
+    .btns { display:flex; flex-wrap:wrap; gap:0.75rem; justify-content:center; }
+    .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.7rem 1.4rem; border-radius:10px; font-size:0.9rem; font-weight:600; font-family:'Inter',sans-serif; cursor:pointer; text-decoration:none; transition:background 0.2s,transform 0.15s; border:none; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:#1D4ED8; transform:translateY(-1px); }
+    .btn-outline { background:transparent; border:1px solid var(--border); color:var(--muted); }
+    .btn-outline:hover { border-color:rgba(255,255,255,0.2); color:var(--text); }
+    .footer { margin-top:4rem; font-size:0.78rem; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="code" aria-hidden="true">404</div>
+  <div class="icon-wrap">🔧</div>
+  <h1>Página não encontrada</h1>
+  <p>Parece que esta página foi para reparação. Volta ao início ou explora a nossa loja.</p>
+  <div class="btns">
+    <a href="index.html" class="btn btn-primary">← Voltar ao início</a>
+    <a href="loja.html" class="btn btn-outline">🛒 Ver loja</a>
+    <a href="reparacoes.html" class="btn btn-outline">🔧 Reparações</a>
+  </div>
+  <p class="footer">Techlogic · Oldrões, Penafiel · <a href="tel:910277026" style="color:inherit">910 277 026</a></p>
+</body>
+</html>
